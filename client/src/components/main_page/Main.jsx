@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { BillManager } from './BillManager';
+import { BillManager } from './billmanager/BillManager';
 import { TaxCalculater } from './taxcalculator/TaxCalculater';
 
 export const Main = () => {

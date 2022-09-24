@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-export const Dropdown = () => {
+export const Dropdown = ({onChange}) => {
   return (
     <label>
     Payment Period
-     <select>
+     <select onChange ={onChange}>
        <option value=  "year" name="year"> Year</option>
        <option value = "month" name= "month" >Month </option>
        

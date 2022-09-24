@@ -1,0 +1,8 @@
+.bill{
+    display: flex;
+    flex-direction: row;
+}
+
+.bill > input {
+    align-items: right;
+}

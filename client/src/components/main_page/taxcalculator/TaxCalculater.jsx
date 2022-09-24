@@ -6,23 +6,9 @@ import "./taxCalculator.css";
 
 export const TaxCalculater = () => {
 
-  const data = {}
+  const data = {yearOfTaxation: '2000'}
 
-  const handleSavings = (event) => {
   
-    data.savings = event.target.value;
-  };
-
-  const handleInsurance = () => {
-  };
-
-  const handleMortgage = () =>{
-
-  };
-
-  const handleDisability = () =>{
-
-  };
 
   const formSubmit = (event) =>{
     event.preventDefault();
@@ -37,15 +23,21 @@ export const TaxCalculater = () => {
         text="Year of Taxation"
         type="year"
         name="yearOfTaxation"
+        onChange={(event)=>{data.yearOfTaxation = event.target.value}}
       />
 
-     <Dropdown/>
+     <Dropdown 
+     onChange = {(event) => {data.paymentPeriond = event.target.value}}
+
+     />
      
 
       <FieldInput
         text= "Gross Salary"
         type = "number"
         name ="grossSalary"
+        onChange={(event) =>{data.grosSalary = event.target.value}}
+        value= "9000"
         
       />
 
@@ -53,13 +45,14 @@ export const TaxCalculater = () => {
         text="Contribution Benefit"
         type="number"
         name ="contributionBenefit"
+        onChange={(event)=>{data.contribution = event.target.value}}
 
       />
 
       <RadioInput
         text=" Do you have any disability exception certificate?"
         name="disability"
-        onChange={handleDisability}
+        onChange={(event) => {data.disability = event.target.disability}}
         option1 = "Yes"
         option2 = "No"
       /> 
@@ -67,7 +60,7 @@ export const TaxCalculater = () => {
       <RadioInput
         text=" Do you have a mortgage?"
         name="mortgage"
-        onChange={handleMortgage}
+        onChange={(event) => data.mortgage = event.target.value}
         option1 = "Yes"
         option2 = "No"
       /> 
@@ -76,21 +69,12 @@ export const TaxCalculater = () => {
       <RadioInput
         text="Do you have a life insurance policy?"
         name="insurance"
-        onChange={handleInsurance}
+        onChange={(event)=>{data.insurance = event.target.value}}
         option1 = "Yes"
         option2 = "No"
       /> 
 
-     
-
-      <RadioInput
-        text="Do you have  a Home Ownership Savings Plan?"
-        name="savings"
-        onChange={handleSavings}
-        option1 = "Yes"
-        option2 = "No"
-      />     
-
+  
       <button onClick={formSubmit}>Calculate </button>
 
     </form>
