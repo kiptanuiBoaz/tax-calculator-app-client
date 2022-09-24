@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express();
+const cors=require('cors')
+
+app.use(cors())
 app.use(express.json())
 const paye=require('./routes/paye')
 app.use('/api',paye);
