@@ -4,7 +4,7 @@ import React from 'react';
 export const NavList = () => {
   return (
     
-    <ul className="navList">
+    <ul className="nav-list">
       {/* <li><NavLink  to={{pathname:"https://meliora.co.ke/articles/nvrjgtnsgh5ophs6mm"}} target="_blank" >Virtual Bootcamp</NavLink></li>
       <li><NavLink to="/ourteam">Our Team</NavLink></li> */}
       <li>Virtual Bootcamp</li>
