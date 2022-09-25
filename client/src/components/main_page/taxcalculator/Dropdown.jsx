@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Dropdown = ({onChange}) => {
   return (
-    <label>
+    <label className="label">
     Payment Period
      <select onChange ={onChange}>
        <option value=  "year" name="year"> Year</option>

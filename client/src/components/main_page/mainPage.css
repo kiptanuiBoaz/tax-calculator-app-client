@@ -1,0 +1,27 @@
+.mainSection{
+    text-align: center;
+}
+
+.main-div{
+    border: 1px solid #D9D9D9;
+    width: 677px;
+    margin: auto;
+}
+
+.selectBtn{
+    background-color: #fff;
+    width: 338.97px;
+    height: 62.53px;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0em;
+    text-align: left;
+    color:black;
+    text-align: center;
+    /* text-align: center; */
+    border: 1px solid #D9D9D9
+
+}
+

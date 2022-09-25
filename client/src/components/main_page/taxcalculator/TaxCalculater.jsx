@@ -37,7 +37,7 @@ export const TaxCalculater = () => {
         type = "number"
         name ="grossSalary"
         onChange={(event) =>{data.grosSalary = event.target.value}}
-        value= "9000"
+        
         
       />
 
@@ -52,9 +52,10 @@ export const TaxCalculater = () => {
       <RadioInput
         text=" Do you have any disability exception certificate?"
         name="disability"
-        onChange={(event) => {data.disability = event.target.disability}}
+        onChange={(event) => {data.disability = event.target.value}}
         option1 = "Yes"
         option2 = "No"
+        disability
       /> 
 
       <RadioInput

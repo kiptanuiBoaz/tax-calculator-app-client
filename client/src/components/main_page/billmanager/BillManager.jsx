@@ -1,42 +1,79 @@
 import React, {useState} from "react";
-import { Bill } from "./Bill";
 import "./billManager.css";
 
 
 export const BillManager = () => {
-  const bills = [{billName:"Rent"},{billName:"Entertainment"},{billName:"Food"} ,{billName:"Shopping"}];
-  // const startBill = 0;
-  const balance= 0;
+  const bills = [{billName:"Rent",billValue:Number,},{billName:"Entertainment",billValue:Number,},{billName:"Food",billValue:Number,} ,{billName:"Shopping",billValue:Number,}];
+  let temp = [];
+  let final = [];
 
-  const [billSum, setBillSum] = useState(0)
+  const [clicked,setClicked] = useState(false);
 
-  const handleBillSumming = (startBill) => {
-    console.log(startBill)
-    // setBillSum(bills.reduce( (prevValue , bills.value) => previousValue + currentValue )
+  const [newBill, setNewBill] = useState({
+    billName:"",
+    billValue:Number
+  });
+
+  const [defaultBill, setDefaultBill] = useState({  
+    // billName:"",
+   billValue:Number
+  });
+  
+  
+  // final = temp.push(newBill);
+  console.log(defaultBill);
+
+ 
+
+  const handleClick= () =>{
+    setClicked(true);
+  
   };
-  // const finalBill = bills.reduce(
-  //   (previousValue, currentValue) => previousValue + currentValue,
-  //   initialValue
-  // );
 
+  const addNewBill = (event)=> {
+    const {name, value} = event.target;
+
+    setNewBill((prevBill) =>{
+      return{
+        ...prevBill,
+        [name]: value
+      }
+      
+    });
+
+  };
+
+   
 
   return (
-    <div>
+    <div className="label-bill">
+          {bills.map((bill,i,bills)=>{
+            return(
+              <div >
 
-      {bills.map((bill)=>{
-        return(
-          <Bill 
-            bill= {bill}
-            onChange={(event)=>{
-              bill.billValue = event.target.value;
-              handleBillSumming( bill.billValue)
-              
-              }}
-          />
-        )
-      })}
+                <label>{bill.billName}</label> 
+                <input onChange={ (event)=>{ setDefaultBill({                   
+                        "billName":bill.billName,
+                        "billValue":parseInt(event.target.value),})}
+                      }
+                  
+                  type="number" name="billValue"
+                />
+               
+              </div>
+            )
+          })}
 
-      <p>{`Balance:  KES ${balance} `}</p>
+          {clicked &&
+            <div >
+              <input onChange={addNewBill} type="text" name="billName" value={newBill.billName} />
+              <input onChange={addNewBill} type="number" name="billValue"  value={parseInt(newBill.billValue)}/>
+            </div> 
+          }
+          <button onClick={ (event)=>{event.preventDefault(); handleClick()}}>Add</button>
+          
+{/*         
+      <p>{`Balance:  KES ${balance} `}</p>  */}
     </div>
 
   )
