@@ -7,8 +7,6 @@
 
     width:100%;
     text-align: right;
-   
-
 }
 
 .label-bill input{
@@ -20,8 +18,12 @@
 
 }
 
+.label-bill input:focus{
+    outline-color:  #1CB484;
+}
+
 .label-bill label {
-    width:225.68px;
+   
     height: 22px;
     font-family: 'Inter';
     font-style: normal;
@@ -32,4 +34,24 @@
     color: #000000;
     margin-left: -30px;
     margin-right: 20px;
+}
+
+.secodary-input{
+    display: flex;
+    flex-direction: row;
+}
+.billButtons{
+    text-align: center;
+   
+}
+.billButtons>button{
+    width: 150px;
+    height: 40px;
+    font-size: 20px;
+    margin: 20px;
+    font-family: Inter;
+    color:black;
+    text-align: center;
+    border: 1px solid #D9D9D9;
+    font-weight: 400;
 }

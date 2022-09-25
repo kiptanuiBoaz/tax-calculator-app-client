@@ -49,7 +49,7 @@ export const BillManager = () => {
     <div className="label-bill">
           {bills.map((bill,i,bills)=>{
             return(
-              <div >
+              <div className="label-bill" >
 
                 <label>{bill.billName}</label> 
                 <input onChange={ (event)=>{ setDefaultBill({                   
@@ -65,12 +65,16 @@ export const BillManager = () => {
           })}
 
           {clicked &&
-            <div >
+            <div className="secodary-input" >
               <input onChange={addNewBill} type="text" name="billName" value={newBill.billName} />
               <input onChange={addNewBill} type="number" name="billValue"  value={parseInt(newBill.billValue)}/>
             </div> 
           }
-          <button onClick={ (event)=>{event.preventDefault(); handleClick()}}>Add</button>
+          <div className="billButtons">
+            <button onClick={ (event)=>{event.preventDefault(); handleClick()}}>Add bill</button>
+            {clicked && <button onClick={()=>!setClicked(false)}>Remove bill</button> }
+          </div>
+         
           
 {/*         
       <p>{`Balance:  KES ${balance} `}</p>  */}

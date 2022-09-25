@@ -8,8 +8,6 @@ export const TaxCalculater = () => {
 
   const data = {yearOfTaxation: '2000'}
 
-  
-
   const formSubmit = (event) =>{
     event.preventDefault();
     console.log(data)
@@ -76,7 +74,7 @@ export const TaxCalculater = () => {
       /> 
 
   
-      <button onClick={formSubmit}>Calculate </button>
+      <button  className = "selectBtn" onClick={formSubmit}>Calculate </button>
 
     </form>
   </>

@@ -16,8 +16,8 @@ export const Main = () => {
     <section className="mainSection">
     
       <div >
-        <button className="selectBtn" style= {{backgroundColor:(task === "tax") && "#D9D9D9"}} onClick={setPage} name="tax" >Tax Calculater</button>
-        <button  className="selectBtn" style= {{backgroundColor:(task === "bill") && "#D9D9D9"}} onClick={setPage} name="bill" >Bill Manager</button>
+        <button className="selectBtn" style= {{backgroundColor:(task === "tax") &&  "#1CB484"}} onClick={setPage} name="tax" >Tax Calculater</button>
+        <button  className="selectBtn" style= {{backgroundColor:(task === "bill") &&  "#1CB484"}} onClick={setPage} name="bill" >Bill Manager</button>
       </div>
       
       <div className="main-div">
