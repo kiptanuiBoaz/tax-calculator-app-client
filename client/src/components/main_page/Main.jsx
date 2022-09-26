@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { BillManager } from './billmanager/BillManager';
-import { TaxCalculater } from './taxcalculator/TaxCalculater';
+import { TaxCalculator } from './taxcalculator/TaxCalculater';
 import "./mainPage.css"
 
 export const Main = () => {
@@ -21,7 +21,7 @@ export const Main = () => {
       </div>
       
       <div className="main-div">
-        {(task === "tax") && <TaxCalculater /> }
+        {(task === "tax") && <TaxCalculator/> }
         {(task === "bill") && <BillManager/> }
 
       </div>

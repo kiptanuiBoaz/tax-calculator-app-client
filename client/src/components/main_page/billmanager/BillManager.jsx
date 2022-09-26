@@ -44,7 +44,7 @@ export const BillManager = () => {
     }
   }
 
-  console.log(computeArray);
+  console.log({computeArray});
   
 
  

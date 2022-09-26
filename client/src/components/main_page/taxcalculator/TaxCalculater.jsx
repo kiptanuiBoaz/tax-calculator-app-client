@@ -5,7 +5,7 @@ import { RadioInput } from "./RadioInput"
 import "./taxCalculator.css";
 import axios from "axios";
 
-export const TaxCalculater = () => {
+export const TaxCalculator = () => {
 
   const [taxResult, setTaxResult] = useState();
   const [taxError, setTaxError] = useState("no error");
