@@ -1,7 +1,7 @@
 const express = require("express");
 const { calculateExpenses, getBillManager } = require("../calculate");
 const bodyParser = require("body-parser");
-const router = express.Router();
+// const router = express.Router();
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -19,6 +19,8 @@ app.get("/getExpenses", (request, response) => {
     status_code: 200,
     data: totalBalance,
   });
+
+  console.log(`New Updated Balance: ${totalBalance}`);
 });
 
 //post the expenses(expected balance is 9,000)
@@ -42,6 +44,6 @@ app.post("/calculateExpenses", (request, response) => {
 });
 
 app.listen(port, () => {
-  console.log(`Listening at port: http://localhost/${port}`);
+  console.log(`Listening at port: http://localhost:${port}`);
 });
 
