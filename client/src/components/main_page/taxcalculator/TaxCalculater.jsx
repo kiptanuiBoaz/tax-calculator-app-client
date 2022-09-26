@@ -1,16 +1,32 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Dropdown } from "./Dropdown";
 import { FieldInput } from "./FieldInput";
 import { RadioInput } from "./RadioInput"
 import "./taxCalculator.css";
+import axios from "axios";
 
 export const TaxCalculater = () => {
 
-  const data = {yearOfTaxation: '2000'}
+  const [taxResult, setTaxResult] = useState();
+  const [taxError, setTaxError] = useState("no error");
+
+  const data = {};
+
+  const postTax = async () => {
+    axios.post('http://localhost:8080/paye', data)
+    
+    .then(response => setTaxResult({response}))
+    .catch(error => {
+      setTaxError(error);
+      console.error(taxError);
+    })
+
+    console.log(taxResult);
+  }
 
   const formSubmit = (event) =>{
     event.preventDefault();
-    console.log(data)
+    postTax();
   }
 
   return (
@@ -21,11 +37,13 @@ export const TaxCalculater = () => {
         text="Year of Taxation"
         type="year"
         name="yearOfTaxation"
-        onChange={(event)=>{data.yearOfTaxation = event.target.value}}
+        onChange={ event=> data.yearOfTaxation = parseInt(event.target.value || "2000")}
       />
 
      <Dropdown 
-     onChange = {(event) => {data.paymentPeriod = event.target.value}}
+
+     onChange = { event => data.paymentPeriond = event.target.value || "year"}
+
 
      />
      
@@ -34,7 +52,7 @@ export const TaxCalculater = () => {
         text= "Gross Salary"
         type = "number"
         name ="grossSalary"
-        onChange={(event) =>{data.grosSalary = event.target.value}}
+        onChange={ event => data.grosSalary = parseInt(event.target.value || "0000")}
         
         
       />
@@ -43,14 +61,14 @@ export const TaxCalculater = () => {
         text="Contribution Benefit"
         type="number"
         name ="contributionBenefit"
-        onChange={(event)=>{data.contributionBenefit = event.target.value}}
+        onChange={event=>data.contribution = parseInt( event.target.value || "0000" )}
 
       />
 
       <RadioInput
         text=" Do you have any disability exception certificate?"
         name="disability"
-        onChange={(event) => {data.disability = event.target.value}}
+        onChange={event => {data.disability = event.target.value}}
         option1 = "Yes"
         option2 = "No"
         disability
@@ -59,7 +77,9 @@ export const TaxCalculater = () => {
       <RadioInput
         text=" Do you have a mortgage?"
         name="mortgage"
-        onChange={(event) => data.mortgageInterest = event.target.value}
+
+        onChange={event => data.mortgage = parseInt(event.target.value ||"0000")}
+
         option1 = "Yes"
         option2 = "No"
       /> 
@@ -68,13 +88,13 @@ export const TaxCalculater = () => {
       <RadioInput
         text="Do you have a life insurance policy?"
         name="insurance"
-        onChange={(event)=>{data.insuranceRelief = event.target.value}}
+        onChange={event=>data.insurance = parseInt(event.target.value ||"0000")}
         option1 = "Yes"
         option2 = "No"
       /> 
 
   
-      <button style={{backgroundColor: data.yearOfTaxation && data.insurance && data.mortgage && data.disability && data.contribution && data.grosSalary&& data.paymentPeriond&& "red"}} className = "selectBtn" onClick={formSubmit}>Calculate </button>
+      <button style={{backgroundColor: data.yearOfTaxation && data.insurance && data.mortgage && data.disability && data.contribution && data.grosSalary && data.paymentPeriond && "red"}} className = "selectBtn" onClick={formSubmit}>Calculate </button>
 
     </form>
   </>
