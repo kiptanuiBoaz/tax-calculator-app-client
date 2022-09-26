@@ -7,26 +7,41 @@ import axios from "axios";
 
 export const TaxCalculater = () => {
 
-  const [taxResult, setTaxResult] = useState();
+  const [taxResult, setTaxResult] = useState({});
   const [taxError, setTaxError] = useState("no error");
+  const [grossSalary,setGrossSalary]=useState(0)
+  const [yearOfTaxation,setyearOfTaxation]=useState(0)
+  const [paymentPeriod,setpaymentPeriod]=useState("Month")
+  const [contributionBenefit,setcontributionBenefit]=useState(0)
+  const [mortageInterest,setmortageInterest]=useState(0)
+  const [insuranceRelief,setinsuranceRelief]=useState(0)
+  const [disability,setDisability]=useState("false")
 
-  const data = {};
 
   const postTax = async () => {
-    axios.post('http://localhost:8080/paye', data)
-    
-    .then(response => setTaxResult({response}))
-    .catch(error => {
+  
+    try {
+       const response=await axios.post('http://localhost:8080/api/payeCalculator', 
+       { grossSalary, paymentPeriod,disability,contributionBenefit,mortageInterest,insuranceRelief },
+      {
+        headers: {
+        'Content-Type': "application/json",
+        'Accept': "application/json",
+        }  
+    } )
+      let result=response.data
+      setTaxResult(result)
+      console.log(taxResult)
+    } catch (error) {
       setTaxError(error);
       console.error(taxError);
-    })
-
-    console.log(taxResult);
+    }
   }
 
   const formSubmit = (event) =>{
     event.preventDefault();
     postTax();
+    console.log(paymentPeriod)
   }
 
   return (
@@ -36,13 +51,13 @@ export const TaxCalculater = () => {
       <FieldInput
         text="Year of Taxation"
         type="year"
-        name="yearOfTaxation"
-        onChange={ event=> data.yearOfTaxation = parseInt(event.target.value || "2000")}
+        name={yearOfTaxation}
+        onChange={ event=> setyearOfTaxation(event.target.value)}
       />
 
      <Dropdown 
 
-     onChange = { event => data.paymentPeriond = event.target.value || "year"}
+     onChange = { event => setpaymentPeriod(event.target.value)}
 
 
      />
@@ -50,25 +65,25 @@ export const TaxCalculater = () => {
 
       <FieldInput
         text= "Gross Salary"
-        type = "number"
-        name ="grossSalary"
-        onChange={ event => data.grosSalary = parseInt(event.target.value || "0000")}
+        
+        name ={grossSalary}
+        onChange={ event => setGrossSalary(parseInt( event.target.value))}
         
         
       />
 
       <FieldInput
         text="Contribution Benefit"
-        type="number"
-        name ="contributionBenefit"
-        onChange={event=>data.contribution = parseInt( event.target.value || "0000" )}
+        
+        name ={contributionBenefit}
+        onChange={event=>setcontributionBenefit( event.target.value)}
 
       />
 
       <RadioInput
         text=" Do you have any disability exception certificate?"
-        name="disability"
-        onChange={event => {data.disability = event.target.value}}
+        name={disability}
+        onChange={event => setDisability(event.target.value)}
         option1 = "Yes"
         option2 = "No"
         disability
@@ -76,9 +91,9 @@ export const TaxCalculater = () => {
 
       <RadioInput
         text=" Do you have a mortgage?"
-        name="mortgage"
+        name={mortageInterest}
 
-        onChange={event => data.mortgage = parseInt(event.target.value ||"0000")}
+        onChange={event =>setmortageInterest(event.target.value)}
 
         option1 = "Yes"
         option2 = "No"
@@ -87,14 +102,14 @@ export const TaxCalculater = () => {
 
       <RadioInput
         text="Do you have a life insurance policy?"
-        name="insurance"
-        onChange={event=>data.insurance = parseInt(event.target.value ||"0000")}
+        name={insuranceRelief}
+        onChange={event=>setinsuranceRelief(event.target.value)}
         option1 = "Yes"
         option2 = "No"
       /> 
 
   
-      <button style={{backgroundColor: data.yearOfTaxation && data.insurance && data.mortgage && data.disability && data.contribution && data.grosSalary && data.paymentPeriond && "red"}} className = "selectBtn" onClick={formSubmit}>Calculate </button>
+      <button style={{backgroundColor: yearOfTaxation && insuranceRelief && mortageInterest && disability && contributionBenefit && grossSalary && paymentPeriod && "red"}} className = "selectBtn" onClick={formSubmit}>Calculate </button>
 
     </form>
   </>
