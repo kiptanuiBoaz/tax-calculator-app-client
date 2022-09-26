@@ -13,6 +13,8 @@ router.get("/getExpenses", (request, response) => {
     status_code: 200,
     data: totalBalance,
   });
+
+  console.log(`New Updated Balance: ${totalBalance}`);
 });
 
 //post the expenses(expected balance is 9,000)

@@ -1,5 +1,7 @@
+// const {netPay} = require('./routes/paye')
 let totalBalance;
 let netPay = 24000;
+// console.log(netPay);
 
 function getBillManager() {
   totalBalance = netPay;
