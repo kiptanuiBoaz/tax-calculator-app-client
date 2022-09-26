@@ -7,7 +7,7 @@ export const RadioInput = ({text,name,onChange,option1, option2, disability}) =>
     setAvailable(event.target.value);
   
   }
-  return (
+  return(
     <label className="label-radio">
         {text}
         
