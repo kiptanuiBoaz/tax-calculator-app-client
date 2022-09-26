@@ -3,13 +3,13 @@ import "./billmabagerStyle/style.css";
 
 
 export const BillManager = () => {
-  
+  const [isShown, setIsShown] = useState()
 
   const [clicked,setClicked] = useState(false);
 
   const [newBill, setNewBill] = useState({
-    billName:"",
-    billValue:Number
+    billName:""
+    
   });
 
   const [defaultBill, setDefaultBill] = useState({  
@@ -18,26 +18,33 @@ export const BillManager = () => {
   });
 
   const [bills, setBills] = useState([{billName:"Rent",billValue:Number,},{billName:"Entertainment",billValue:Number,},{billName:"Food",billValue:Number,} ,{billName:"Shopping",billValue:Number,}]);
-  const [computeArray, setComputeArray] = useState([]);
+  const [balance, setBalance] = useState(0);
+  const [computeArray, setComputeArray]= useState([]);
   
-  const pushNewBill = () =>{
-    // let billValue = newBill.billValue 
-    // let billName = newBill.billName
+  const pushNewBill = (event) =>{
+    event.preventDefault();
 
-
-    if(newBill.billName && newBill.billValue ){
+    if(newBill.billName ){
       setBills(current => [...current, newBill])
     }
 
-    console.log(bills)
+    setNewBill({billName:""});
+    setClicked(false);
+
+    
   }
 
-  const pushDefaultBill = ()=>{
+  
+
+  const pushDefaultBill = (defaultBill)=>{
 
     if(defaultBill.billName && defaultBill.billValue){
-      // console.log("defaultBill full")
+
+      (computeArray.includes(defaultBill) === false) && setComputeArray(current => [...current, defaultBill])
     }
   }
+
+  console.log(computeArray);
   
 
  
@@ -56,28 +63,43 @@ export const BillManager = () => {
         [name]: value
       }
     });
-    pushNewBill()
+  
    
   };
 
-   
+  const removeBill = (a) => {
+    setClicked(false)
+
+    setBills((prevBill) =>{
+      return prevBill.filter((bill, i)=>{
+        return i !== a
+      });
+  })};
+    
 
   return (
     <div className="label-bill">
-          {bills.map((bill,i,bills)=>{
+          {bills.map((bill,a,bills)=>{
+            
             return(
+
+              <div  onMouseEnter={() => setIsShown(a)} onMouseLeave={() => setIsShown("")} className="label-bill" >
+
               <div className="bill" >
+
 
                 <label>{bill.billName}</label> 
                 <input className="noscroll" onChange={ (event)=>{ setDefaultBill({                   
                       "billName":bill.billName,
                       "billValue":parseInt(event.target.value),})
-                      pushDefaultBill()
+                      pushDefaultBill(defaultBill);
+                      
                     }
                   }
                   
                   type="number" name="billValue"
                 />
+                 { isShown === a && <button onClick={()=>removeBill(a)} style={{  height:"30px", right:"320px", borderRadius:"5px", borderColor:"grey", position:"absolute",color:"white", backgroundColor:"grey"}} >{`Remove ${bill.billName}`.toLocaleLowerCase()} </button> }
                
               </div>
             )
@@ -86,17 +108,17 @@ export const BillManager = () => {
           {clicked &&
             <div className="secodary-input" >
               <input onChange={addNewBill} type="text" name="billName" value={newBill.billName} />
-              <input onChange={addNewBill} type="number" name="billValue"  value={parseInt(newBill.billValue)}/>
-            </div> 
+              <button onClick={pushNewBill}>+</button>
+             </div> 
           }
           <div className="billButtons">
             <button onClick={ (event)=>{event.preventDefault(); handleClick()}}>Add bill</button>
-            {clicked && <button onClick={()=>!setClicked(false)}>Remove bill</button> }
+         
           </div>
          
           
-{/*         
-      <p>{`Balance:  KES ${balance} `}</p>  */}
+        
+      <p>{`Balance:  KES ${balance} `}</p> 
     </div>
 
   )

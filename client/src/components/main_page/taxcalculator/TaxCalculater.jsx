@@ -67,7 +67,7 @@ export const TaxCalculater = () => {
       <RadioInput
         text=" Do you have any disability exception certificate?"
         name="disability"
-        onChange={event => {data.disability = event.target.value}}
+        onChange={event => {data.disability = event.target.value==="true"}}
         option1 = "Yes"
         option2 = "No"
         disability
