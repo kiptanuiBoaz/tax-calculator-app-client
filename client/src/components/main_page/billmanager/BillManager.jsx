@@ -3,9 +3,7 @@ import "./billManager.css";
 
 
 export const BillManager = () => {
-  const bills = [{billName:"Rent",billValue:Number,},{billName:"Entertainment",billValue:Number,},{billName:"Food",billValue:Number,} ,{billName:"Shopping",billValue:Number,}];
-  let temp = [];
-  let final = [];
+  
 
   const [clicked,setClicked] = useState(false);
 
@@ -15,13 +13,32 @@ export const BillManager = () => {
   });
 
   const [defaultBill, setDefaultBill] = useState({  
-    // billName:"",
+    billName:"",
    billValue:Number
   });
+
+  const [bills, setBills] = useState([{billName:"Rent",billValue:Number,},{billName:"Entertainment",billValue:Number,},{billName:"Food",billValue:Number,} ,{billName:"Shopping",billValue:Number,}]);
+  const [computeArray, setComputeArray] = useState([]);
   
+  const pushNewBill = () =>{
+    // let billValue = newBill.billValue 
+    // let billName = newBill.billName
+
+
+    if(newBill.billName && newBill.billValue ){
+      setBills(current => [...current, newBill])
+    }
+
+    console.log(bills)
+  }
+
+  const pushDefaultBill = ()=>{
+
+    if(defaultBill.billName && defaultBill.billValue){
+      // console.log("defaultBill full")
+    }
+  }
   
-  // final = temp.push(newBill);
-  console.log(defaultBill);
 
  
 
@@ -38,9 +55,9 @@ export const BillManager = () => {
         ...prevBill,
         [name]: value
       }
-      
     });
-
+    pushNewBill()
+   
   };
 
    
@@ -52,10 +69,12 @@ export const BillManager = () => {
               <div className="label-bill" >
 
                 <label>{bill.billName}</label> 
-                <input onChange={ (event)=>{ setDefaultBill({                   
-                        "billName":bill.billName,
-                        "billValue":parseInt(event.target.value),})}
-                      }
+                <input className="noscroll" onChange={ (event)=>{ setDefaultBill({                   
+                      "billName":bill.billName,
+                      "billValue":parseInt(event.target.value),})
+                      pushDefaultBill()
+                    }
+                  }
                   
                   type="number" name="billValue"
                 />
