@@ -2,7 +2,8 @@ const router=require('express').Router()
 
 router.post('/payeCalculator',(req,res)=>{
         //   let contribution=
-        let {grossSalary,paymentPeriod,contributionBenefit,mortageInterest,insuranceRelief,disability}=req.body;
+        try {
+          let {grossSalary,paymentPeriod,contributionBenefit,mortageInterest,insuranceRelief,disability}=req.body;
         if(!grossSalary) return res.status(404).json("Please set your gross salary");
         if(!paymentPeriod) return res.status(404).json("Is it a monthly payment");
         contributionBenefit=contributionBenefit ? contributionBenefit : 1080;
@@ -50,30 +51,12 @@ router.post('/payeCalculator',(req,res)=>{
         }
 
 
-
-
+        } catch (error) {
+          console.log(error.message)
+          return res.status(500).json({message:`${error.message}`})
+        }
 })
 
 
 
 module.exports=router
-// if(remainingAmount > 8333){
-        //                     remainingAmount -=8333;
-        //                     taxDue2=8333 * 0.25
-        //                     taxPayable +=taxDue2
-                           
-                                   
-        
-        //                     if(remainingAmount > 32332){
-        //                         finalTaxDue=remainingAmount * 0.3
-        //                         taxPayable += finalTaxDue
-                               
-        //                     }
-        //                     }
-                       
-        //                        else{
-        //                          PAYE=taxPayable - 2400;
-        //                         return res.status(200).json({taxPayable,PAYE})
-        //                        }
-        //         }else {
-        //             return PAYE=0
