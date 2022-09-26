@@ -1,0 +1,31 @@
+.taxResult {
+  display: grid;
+  gap: 20px;
+  margin-inline: 3em;
+}
+.taxResult .tab {
+  display: flex;
+  justify-content: space-between;
+}
+.taxResult .grossRight,
+.taxResult .deductionRight,
+.taxResult .payeRight {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+.taxResult .grossSalary,
+.taxResult .paye {
+  font-weight: 600;
+  font-size: 22px;
+}
+.taxResult .deductions {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #1cb484;
+  font-size: 18px;
+}
+.taxResult .deductions .deduction {
+  display: flex;
+  justify-content: space-between;
+}/*# sourceMappingURL=style.css.map */

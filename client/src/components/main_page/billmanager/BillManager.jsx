@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "./billManager.css";
+import "./billmabagerStyle/style.css";
 
 
 export const BillManager = () => {
@@ -82,7 +82,11 @@ export const BillManager = () => {
           {bills.map((bill,a,bills)=>{
             
             return(
+
               <div  onMouseEnter={() => setIsShown(a)} onMouseLeave={() => setIsShown("")} className="label-bill" >
+
+              <div className="bill" >
+
 
                 <label>{bill.billName}</label> 
                 <input className="noscroll" onChange={ (event)=>{ setDefaultBill({                   
