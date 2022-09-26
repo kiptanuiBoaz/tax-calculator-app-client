@@ -1,17 +1,11 @@
 const express = require("express");
 const { calculateExpenses, getBillManager } = require("../calculate");
-const bodyParser = require("body-parser");
 const router = express.Router();
-const app = express();
-const port = process.env.PORT || 3000;
 
-// app.use("/api",router);
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 //fetch the current netPay to be the balance
-app.get("/getExpenses", (request, response) => {
+router.get("/getExpenses", (request, response) => {
   let totalBalance = getBillManager();
 
   response.json({
@@ -22,7 +16,7 @@ app.get("/getExpenses", (request, response) => {
 });
 
 //post the expenses(expected balance is 9,000)
-app.post("/calculateExpenses", (request, response) => {
+router.post("/calculateExpenses", (request, response) => {
 
   let expenses = request.body;
   console.log(expenses);
@@ -41,7 +35,5 @@ app.post("/calculateExpenses", (request, response) => {
 
 });
 
-app.listen(port, () => {
-  console.log(`Listening at port: http://localhost/${port}`);
-});
+module.exports = router
 
