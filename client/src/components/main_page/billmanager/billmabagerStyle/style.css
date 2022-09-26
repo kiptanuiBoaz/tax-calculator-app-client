@@ -1,0 +1,57 @@
+.label-bill {
+  display: grid;
+  gap: 20px;
+  -webkit-margin-start: 2rem;
+          margin-inline-start: 2rem;
+  -webkit-margin-end: 2rem;
+          margin-inline-end: 2rem;
+  font-family: Inter;
+  font-size: 20px;
+  line-height: 22px;
+  letter-spacing: 0em;
+}
+.label-bill .bill {
+  display: flex;
+  justify-content: space-between;
+  min-width: 36rem;
+}
+.label-bill .bill input {
+  border: 1px solid #1cb484;
+  border-radius: 5px;
+  min-height: 24px;
+  font-size: 18px;
+  padding: 4px;
+}
+.label-bill .bill input:focus {
+  outline-style: groove;
+  outline-width: 2px;
+  outline-color: #1cb484;
+}
+.label-bill .secodary-input {
+  display: flex;
+  justify-content: space-between;
+}
+.label-bill .secodary-input input {
+  border: 1px solid #1cb484;
+  border-radius: 5px;
+  min-height: 24px;
+  font-size: 18px;
+  padding: 4px;
+}
+.label-bill .secodary-input input:focus {
+  outline-style: groove;
+  outline-width: 2px;
+  outline-color: #1cb484;
+}
+.label-bill .billButtons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.label-bill .billButtons button {
+  background-color: #1cb484;
+  padding: 4px 24px;
+  border: none;
+  font-size: 18px;
+  color: #fff;
+}/*# sourceMappingURL=style.css.map */

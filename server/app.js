@@ -1,11 +1,13 @@
-
 const express = require("express");
 const app = express();
+const cors=require('cors')
 
-app.post("/post", (req, res) => {
-  console.log("Connected to React");
-  res.redirect("/");
-});
+app.use(cors())
+app.use(express.json())
+const paye=require('./routes/paye')
+app.use('/api',paye);
+
+
 
 const PORT = process.env.PORT || 8080;
 
