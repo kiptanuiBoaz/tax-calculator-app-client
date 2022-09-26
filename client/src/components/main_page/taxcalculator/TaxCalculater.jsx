@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Dropdown } from "./Dropdown";
 import { FieldInput } from "./FieldInput";
 import { RadioInput } from "./RadioInput"
-import "./taxCalculator.css";
+import "./taxCalculatorStyle/style.css";
 import axios from "axios";
 
 export const TaxCalculater = () => {
@@ -34,6 +34,7 @@ export const TaxCalculater = () => {
     <form className="tax-form">
       
       <FieldInput
+      className="yearofTaxation"
         text="Year of Taxation"
         type="year"
         name="yearOfTaxation"
@@ -90,7 +91,9 @@ export const TaxCalculater = () => {
       /> 
 
   
-      <button style={{backgroundColor: data.yearOfTaxation && data.insurance && data.mortgage && data.disability && data.contribution && data.grosSalary && data.paymentPeriond && "red"}} className = "selectBtn" onClick={formSubmit}>Calculate </button>
+    <div className="calculateBtn">
+        <button style={{backgroundColor: data.yearOfTaxation && data.insurance && data.mortgage && data.disability && data.contribution && data.grosSalary && data.paymentPeriond && "red"}} className = "selectBtn" onClick={formSubmit}>Calculate </button>
+    </div>
 
     </form>
   </>
