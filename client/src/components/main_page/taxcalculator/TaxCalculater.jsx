@@ -42,6 +42,14 @@ export const TaxCalculater = () => {
     postTax();
   }
 
+  const strBool=(value)=>{
+    if (value && typeof value === "string") {
+          if (value.toLowerCase() === "true") return true;
+          if (value.toLowerCase() === "false") return false;
+    }
+        return value;
+}
+
   return (
   <>
   <p className={{color:'red'}}>{taxError}</p>
@@ -72,14 +80,14 @@ export const TaxCalculater = () => {
       <FieldInput
         text="Contribution Benefit"
         name ={contributionBenefit}
-        onChange={event=>setcontributionBenefit( event.target.value)}
+        onChange={event=>setcontributionBenefit(parseInt( event.target.value))}
 
       />
 
       <RadioInput
         text=" Do you have any disability exception certificate?"
         name={disability}
-        onChange={event => setDisability(event.target.value)}
+        onChange={event => setDisability(strBool(event.target.value))}
         option1 = "Yes"
         option2 = "No"
         disability
@@ -89,7 +97,7 @@ export const TaxCalculater = () => {
         text=" Do you have a mortgage?"
         name={mortageInterest}
 
-        onChange={event =>setmortageInterest( event.target.value)}
+        onChange={event =>setmortageInterest(parseInt( event.target.value))}
 
         option1 = "Yes"
         option2 = "No"
@@ -99,7 +107,7 @@ export const TaxCalculater = () => {
       <RadioInput
         text="Do you have a life insurance policy?"
         name={insuranceRelief}
-        onChange={event=>setinsuranceRelief(event.target.value)}
+        onChange={event=>setinsuranceRelief(parseInt( event.target.value))}
         option1 = "Yes"
         option2 = "No"
       /> 

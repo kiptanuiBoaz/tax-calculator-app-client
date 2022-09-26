@@ -4,9 +4,11 @@ export const RadioInput = ({text,name,onChange,option1, option2, disability}) =>
   const [available, setAvailable] = useState("false");
 
   const handleAvailability = (event)=>{
+
     setAvailable(event.target.value);
   
   }
+ 
   return (
     <label className="label-radio">
         {text}
