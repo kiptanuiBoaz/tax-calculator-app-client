@@ -1,0 +1,71 @@
+.tax-form{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+   
+    font-family: Inter;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+   
+    padding-left:30px;
+ 
+
+}
+
+.label label{
+    text-align: left;
+}
+
+.label input{
+    box-sizing: border-box;
+    /* text-align: right; */
+    justify-content: right;
+    width: 318px;
+    height: 46.07px;
+    /* left: 838px;
+    top: 401.54px; */
+    margin:15px;
+    border: 4px solid #D9D9D9;
+    border-radius: 5px;
+    margin-right: -100px;
+}
+
+.label input:focus{
+    outline-color:#1CB484;
+} 
+
+
+.select{
+    width:90px;
+    height: 45px;
+    /* margin-left: 70px; */
+    font-size: 23px;
+    margin: 10px;
+    justify-content: left;
+}
+
+.select:focus{
+    outline-color: #1CB484;
+}
+
+
+.label-radio{
+    display: flex;
+    flex-direction: row;
+    padding:15px;
+   
+    
+}
+
+.label-radio input{
+    margin-left: 10px;
+}
+
+.label-radio > div :nth-child(3){
+    /* margin-left:20px; */
+    width: 200px;
+    height: 36.07px;
+    border: 4px solid #D9D9D9;
+}
