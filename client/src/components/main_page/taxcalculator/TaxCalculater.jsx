@@ -74,7 +74,7 @@ export const TaxCalculater = () => {
       /> 
 
   
-      <button  className = "selectBtn" onClick={formSubmit}>Calculate </button>
+      <button style={{backgroundColor: data.yearOfTaxation && data.insurance && data.mortgage && data.disability && data.contribution && data.grosSalary&& data.paymentPeriond&& "red"}} className = "selectBtn" onClick={formSubmit}>Calculate </button>
 
     </form>
   </>
