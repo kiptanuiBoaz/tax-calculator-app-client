@@ -8,18 +8,17 @@ import axios from "axios";
 export const TaxCalculater = () => {
 
   const [taxResult, setTaxResult] = useState({});
-  const [taxError, setTaxError] = useState("no error");
+  const [taxError, setTaxError] = useState("");
   const [grossSalary,setGrossSalary]=useState(0)
   const [yearOfTaxation,setyearOfTaxation]=useState(0)
-  const [paymentPeriod,setpaymentPeriod]=useState("Month")
+  const [paymentPeriod,setpaymentPeriod]=useState("")
   const [contributionBenefit,setcontributionBenefit]=useState(0)
   const [mortageInterest,setmortageInterest]=useState(0)
   const [insuranceRelief,setinsuranceRelief]=useState(0)
-  const [disability,setDisability]=useState("false")
-
-
-  const postTax = async () => {
+  const [disability,setDisability]=useState(false)
   
+  const postTax = async () => {
+     
     try {
        const response=await axios.post('http://localhost:8080/api/payeCalculator', 
        { grossSalary, paymentPeriod,disability,contributionBenefit,mortageInterest,insuranceRelief },
@@ -33,21 +32,20 @@ export const TaxCalculater = () => {
       setTaxResult(result)
       console.log(taxResult)
     } catch (error) {
-      setTaxError(error);
-      console.error(taxError);
+      setTaxError(error.response.data.message);
+      console.log(error.response.data.message)
     }
   }
 
   const formSubmit = (event) =>{
     event.preventDefault();
     postTax();
-    console.log(paymentPeriod)
   }
 
   return (
   <>
+  <p className={{color:'red'}}>{taxError}</p>
     <form className="tax-form">
-      
       <FieldInput
         text="Year of Taxation"
         type="year"
@@ -65,7 +63,6 @@ export const TaxCalculater = () => {
 
       <FieldInput
         text= "Gross Salary"
-        
         name ={grossSalary}
         onChange={ event => setGrossSalary(parseInt( event.target.value))}
         
@@ -74,7 +71,6 @@ export const TaxCalculater = () => {
 
       <FieldInput
         text="Contribution Benefit"
-        
         name ={contributionBenefit}
         onChange={event=>setcontributionBenefit( event.target.value)}
 
@@ -93,7 +89,7 @@ export const TaxCalculater = () => {
         text=" Do you have a mortgage?"
         name={mortageInterest}
 
-        onChange={event =>setmortageInterest(event.target.value)}
+        onChange={event =>setmortageInterest( event.target.value)}
 
         option1 = "Yes"
         option2 = "No"

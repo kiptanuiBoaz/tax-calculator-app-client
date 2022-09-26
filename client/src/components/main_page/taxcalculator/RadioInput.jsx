@@ -14,9 +14,9 @@ export const RadioInput = ({text,name,onChange,option1, option2, disability}) =>
           <div onChange= {disability ? onChange : handleAvailability}>
             <input type="radio" value={true} name={name} /> {option1}
             <input type="radio" value={false} name={name} /> {option2}
-            { (available === "true") && <input className="label"  onChange= { onChange} type="number"/>}
+           
           </div>          
-        
+          { (available === "true") && <input className="label"  onChange= { onChange} type="number"/>}
 
    </label>
   )
