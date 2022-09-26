@@ -1,42 +1,124 @@
 import React, {useState} from "react";
-import { Bill } from "./Bill";
-import "./billManager.css";
+import "./billmabagerStyle/style.css";
 
 
 export const BillManager = () => {
-  const bills = [{billName:"Rent"},{billName:"Entertainment"},{billName:"Food"} ,{billName:"Shopping"}];
-  // const startBill = 0;
-  const balance= 0;
+  const [isShown, setIsShown] = useState()
 
-  const [billSum, setBillSum] = useState(0)
+  const [clicked,setClicked] = useState(false);
 
-  const handleBillSumming = (startBill) => {
-    console.log(startBill)
-    // setBillSum(bills.reduce( (prevValue , bills.value) => previousValue + currentValue )
+  const [newBill, setNewBill] = useState({
+    billName:""
+    
+  });
+
+  const [defaultBill, setDefaultBill] = useState({  
+    billName:"",
+   billValue:Number
+  });
+
+  const [bills, setBills] = useState([{billName:"Rent",billValue:Number,},{billName:"Entertainment",billValue:Number,},{billName:"Food",billValue:Number,} ,{billName:"Shopping",billValue:Number,}]);
+  const [balance, setBalance] = useState(0);
+  const [computeArray, setComputeArray]= useState([]);
+  
+  const pushNewBill = (event) =>{
+    event.preventDefault();
+
+    if(newBill.billName ){
+      setBills(current => [...current, newBill])
+    }
+
+    setNewBill({billName:""});
+    setClicked(false);
+
+    
+  }
+
+  
+
+  const pushDefaultBill = (defaultBill)=>{
+
+    if(defaultBill.billName && defaultBill.billValue){
+
+      (computeArray.includes(defaultBill) === false) && setComputeArray(current => [...current, defaultBill])
+    }
+  }
+
+  console.log(computeArray);
+  
+
+ 
+
+  const handleClick= () =>{
+    setClicked(true);
+  
   };
-  // const finalBill = bills.reduce(
-  //   (previousValue, currentValue) => previousValue + currentValue,
-  //   initialValue
-  // );
 
+  const addNewBill = (event)=> {
+    const {name, value} = event.target;
+
+    setNewBill((prevBill) =>{
+      return{
+        ...prevBill,
+        [name]: value
+      }
+    });
+  
+   
+  };
+
+  const removeBill = (a) => {
+    setClicked(false)
+
+    setBills((prevBill) =>{
+      return prevBill.filter((bill, i)=>{
+        return i !== a
+      });
+  })};
+    
 
   return (
-    <div>
+    <div className="label-bill">
+          {bills.map((bill,a,bills)=>{
+            
+            return(
 
-      {bills.map((bill)=>{
-        return(
-          <Bill 
-            bill= {bill}
-            onChange={(event)=>{
-              bill.billValue = event.target.value;
-              handleBillSumming( bill.billValue)
-              
-              }}
-          />
-        )
-      })}
+              <div  onMouseEnter={() => setIsShown(a)} onMouseLeave={() => setIsShown("")} className="label-bill" >
 
-      <p>{`Balance:  KES ${balance} `}</p>
+              <div className="bill" >
+
+
+                <label>{bill.billName}</label> 
+                <input className="noscroll" onChange={ (event)=>{ setDefaultBill({                   
+                      "billName":bill.billName,
+                      "billValue":parseInt(event.target.value),})
+                      pushDefaultBill(defaultBill);
+                      
+                    }
+                  }
+                  
+                  type="number" name="billValue"
+                />
+                 { isShown === a && <button onClick={()=>removeBill(a)} style={{  height:"30px", right:"320px", borderRadius:"5px", borderColor:"grey", position:"absolute",color:"white", backgroundColor:"grey"}} >{`Remove ${bill.billName}`.toLocaleLowerCase()} </button> }
+               
+              </div>
+            )
+          })}
+
+          {clicked &&
+            <div className="secodary-input" >
+              <input onChange={addNewBill} type="text" name="billName" value={newBill.billName} />
+              <button onClick={pushNewBill}>+</button>
+             </div> 
+          }
+          <div className="billButtons">
+            <button onClick={ (event)=>{event.preventDefault(); handleClick()}}>Add bill</button>
+         
+          </div>
+         
+          
+        
+      <p>{`Balance:  KES ${balance} `}</p> 
     </div>
 
   )
