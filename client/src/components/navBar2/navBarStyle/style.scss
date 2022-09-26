@@ -1,0 +1,32 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  padding-right: 50px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #F5FAF8;
+    width: 100%;
+
+    .navLeft{
+        margin-inline-start: 30rem;
+    }
+    .navRight{
+        display: flex;
+        gap: 10rem;
+        margin-inline-end: 30rem;
+        font-size: 20px;
+        font-weight: 600;
+        a{
+            text-decoration: none;
+            color:black
+        }
+        a:visited{
+            color: initial;
+        }
+        
+        a:first-child{
+            color: #1CB484;
+        }
+    }
+}
