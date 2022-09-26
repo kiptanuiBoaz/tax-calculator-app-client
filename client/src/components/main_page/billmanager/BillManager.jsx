@@ -44,7 +44,7 @@ export const BillManager = () => {
     }
   }
 
-  // setBalance(computeArray.reduce((currentValue,prevValue)=>{return ({x:currentValue.billValue + prevValue.billValue});}))
+  console.log(computeArray);
   
 
  
