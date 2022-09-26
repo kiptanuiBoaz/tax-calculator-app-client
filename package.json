@@ -1,15 +1,12 @@
 {
   "dependencies": {
     "axios": "^0.27.2",
-<<<<<<< HEAD
     "body-parser": "^1.20.0",
-    "express": "^4.18.1"
-=======
+    "express": "^4.18.1",
     "react-icons": "^4.4.0",
     "react-router": "^6.4.1"
   },
   "devDependencies": {
     "react-router-dom": "^6.4.1"
->>>>>>> c9b65310230b1845f43cdd47e48ad134afd39efc
   }
 }
