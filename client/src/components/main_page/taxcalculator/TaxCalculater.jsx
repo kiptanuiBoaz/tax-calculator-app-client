@@ -25,7 +25,7 @@ export const TaxCalculater = () => {
       />
 
      <Dropdown 
-     onChange = {(event) => {data.paymentPeriond = event.target.value}}
+     onChange = {(event) => {data.paymentPeriod = event.target.value}}
 
      />
      
@@ -43,7 +43,7 @@ export const TaxCalculater = () => {
         text="Contribution Benefit"
         type="number"
         name ="contributionBenefit"
-        onChange={(event)=>{data.contribution = event.target.value}}
+        onChange={(event)=>{data.contributionBenefit = event.target.value}}
 
       />
 
@@ -59,7 +59,7 @@ export const TaxCalculater = () => {
       <RadioInput
         text=" Do you have a mortgage?"
         name="mortgage"
-        onChange={(event) => data.mortgage = event.target.value}
+        onChange={(event) => data.mortgageInterest = event.target.value}
         option1 = "Yes"
         option2 = "No"
       /> 
@@ -68,7 +68,7 @@ export const TaxCalculater = () => {
       <RadioInput
         text="Do you have a life insurance policy?"
         name="insurance"
-        onChange={(event)=>{data.insurance = event.target.value}}
+        onChange={(event)=>{data.insuranceRelief = event.target.value}}
         option1 = "Yes"
         option2 = "No"
       /> 
