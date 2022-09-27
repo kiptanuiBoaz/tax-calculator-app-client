@@ -8,9 +8,12 @@ import {TaxResult} from "../taxResult/TaxResult"
 
 
 
+
 export const TaxCalculator = ({setDisp}) => {
 
-  const [taxResult, setTaxResult] = useState({});
+  const [taxResult, setTaxResult] = useState({})
+  
+
   const [taxError, setTaxError] = useState("");
   const [grossSalary,setGrossSalary]=useState(0)
   const [yearOfTaxation,setyearOfTaxation]=useState(0)
@@ -19,11 +22,18 @@ export const TaxCalculator = ({setDisp}) => {
   const [mortageInterest,setmortageInterest]=useState(0)
   const [insuranceRelief,setinsuranceRelief]=useState(0)
   const [disability,setDisability]=useState(false)
+
   const [isLoading, setIsLoading] = useState(false);
   const postTax = async () => {
      
     try {
       setIsLoading(true);
+=======
+  
+  const postTax = async () => {
+     
+    try {
+
        const response=await axios.post('http://localhost:8080/api/payeCalculator', 
        { grossSalary, paymentPeriod,disability,contributionBenefit,mortageInterest,insuranceRelief },
       {
@@ -34,6 +44,7 @@ export const TaxCalculator = ({setDisp}) => {
     } )
       let result=response.data
       setTaxResult(result)
+
       
         setIsLoading(false)
       
@@ -48,6 +59,13 @@ export const TaxCalculator = ({setDisp}) => {
 
     }
 
+
+      console.log(taxResult)
+    } catch (error) {
+      setTaxError(error.response.data.message);
+      console.log(error.response.data.message)
+    }
+
   }
 
   const formSubmit = (event) =>{
@@ -55,11 +73,23 @@ export const TaxCalculator = ({setDisp}) => {
     postTax();
   }
 
+  const strBool=(value)=>{
+    if (value && typeof value === "string") {
+          if (value.toLowerCase() === "true") return true;
+          if (value.toLowerCase() === "false") return false;
+    }
+        return value;
+}
+
   return (
   <>
+
     <p className={{color:'red'}}>{taxError}</p>
 
     {(taxResult === true) && <TaxResult taxResult= {taxResult} />}
+
+
+  <p className={{color:'red'}}>{taxError}</p>
 
     <form className="tax-form">
       <FieldInput
@@ -97,7 +127,11 @@ export const TaxCalculator = ({setDisp}) => {
         text=" Do you have any disability exception certificate?"
 
         name={disability}
+
         onChange={event => (event.target.value === "true") && setDisability(true)}
+
+        onChange={event => setDisability(event.target.value)}
+
 
         option1 = "Yes"
         option2 = "No"
@@ -122,8 +156,15 @@ export const TaxCalculator = ({setDisp}) => {
         option1 = "Yes"
         option2 = "No"
       /> 
+
  
       <button  className ="selectBtn" onClick ={(event) => setDisp(result) formSubmit}>{ isLoading ? "Calculating..." : "Calculate"} </button>
+
+
+  
+
+
+
     </form>
 
     
