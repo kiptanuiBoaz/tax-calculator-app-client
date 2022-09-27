@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {useState,useContext} from "react";
 import "./billmabagerStyle/style.css";
-
+import { TaxContext } from "../../../context/Taxcontext";
 
 export const BillManager = () => {
   const [isShown, setIsShown] = useState()
+  const {setTaxResult}=useContext(TaxContext)
 
   const [clicked,setClicked] = useState(false);
 
@@ -11,7 +12,6 @@ export const BillManager = () => {
     billName:""
     
   });
-
   const [defaultBill, setDefaultBill] = useState({  
     billName:"",
    billValue:Number
@@ -73,7 +73,6 @@ export const BillManager = () => {
         return i !== a
       });
   })};
-    
 
   return (
     <div className="label-bill">
@@ -84,7 +83,8 @@ export const BillManager = () => {
             <div  onMouseEnter={() => (a > 3) && setIsShown(a)} onMouseLeave={() => setIsShown("")} className="label-bill" >
 
               <div className="bill" >
-
+                   
+              <p className="netPay">Net Pay: {setTaxResult?.netPay}</p>
                 <label>{bill.billName}</label> 
                 <div className="remo">
                   <input 
@@ -120,7 +120,7 @@ export const BillManager = () => {
         </div>
          
       
-      <p className="balance">{`Balance:  KES ${balance} `}</p> 
+      <p className="balance">Balance: {` KES ${ balance } `}</p> 
     </div>
     
   )

@@ -1,5 +1,5 @@
 import React from "react";
-import { navBar as NavBar } from "../navBar/navBar";
+import { navBar as NavBar } from "../navbar/NavBar";
 import {Footer} from "../footer/Footer"; 
 import {team} from "../assets/team";
 import {TeamCard} from "../our_team/TeamCard";

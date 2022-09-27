@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState,useContext} from 'react'
 import { Dropdown } from "./Dropdown";
 import { FieldInput } from "./FieldInput";
 import { RadioInput } from "./RadioInput"
 import "./taxCalculatorStyle/style.css";
 import axios from "axios";
-import { useContext } from 'react';
 import { TaxContext } from '../../../context/Taxcontext';
+import { TaxResult } from '../taxResult/TaxResult';
 
 export const TaxCalculator = () => {
   const {taxResult,setTaxResult}=useContext(TaxContext)
@@ -18,10 +18,12 @@ export const TaxCalculator = () => {
   const [mortageInterest,setmortageInterest]=useState(0)
   const [insuranceRelief,setinsuranceRelief]=useState(0)
   const [disability,setDisability]=useState(false)
+  const [loading,setLoading]=useState(false)
   
   const postTax = async () => {
      
     try {
+      setLoading(true)
        const response=await axios.post('http://localhost:8080/api/payeCalculator', 
        { grossSalary, paymentPeriod,disability,contributionBenefit,mortageInterest,insuranceRelief },
       {
@@ -32,8 +34,10 @@ export const TaxCalculator = () => {
     } )
       let result=response.data
       setTaxResult(result)
+      setLoading(false)
       console.log(taxResult)
     } catch (error) {
+      setLoading(false)
       setTaxError(error.response.data.message);
       console.log(error.response.data.message)
     }
@@ -44,16 +48,11 @@ export const TaxCalculator = () => {
     postTax();
   }
 
-  const strBool=(value)=>{
-    if (value && typeof value === "string") {
-          if (value.toLowerCase() === "true") return true;
-          if (value.toLowerCase() === "false") return false;
-    }
-        return value;
-}
 
   return (
   <>
+{(taxResult === true) && <TaxResult taxResult= {taxResult} />}
+
   <p className={{color:'red'}}>{taxError}</p>
     <form className="tax-form">
       <FieldInput
@@ -120,7 +119,7 @@ export const TaxCalculator = () => {
 
   
 
-      <button style={{backgroundColor: yearOfTaxation && insuranceRelief && mortageInterest && disability && contributionBenefit && grossSalary && paymentPeriod && "red"}} className = "selectBtn" onClick={formSubmit}>Calculate </button>
+      <button style={{backgroundColor: yearOfTaxation && insuranceRelief && mortageInterest && disability && contributionBenefit && grossSalary && paymentPeriod && "red"}} className = "selectBtn" onClick={formSubmit}>{loading ? "calculating": "Calculate"}</button>
 
 
     </form>
