@@ -1,11 +1,25 @@
 import React, {useState} from 'react';
 import { BillManager } from './billmanager/BillManager';
-
+import {Footer } from "../footer/Footer"
 import { TaxCalculator } from './taxcalculator/TaxCalculater';
-import "./mainPageStyle/style.css"
+import "./mainPageStyle/style.css";
+import { navBar as NavBar } from '../navBar/navBar';
 
 
-export const Main = () => {
+export const Main = ()=>{
+  return(
+    <>
+      <NavBar/>
+      <MainPage/>
+      <Footer/>
+    </>
+  )
+ 
+ 
+}
+
+
+ const MainPage = () => {
   // state to manage the to manage the task of the user
   const [ task, setTask] = useState("tax");
 

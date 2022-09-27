@@ -1,7 +1,5 @@
 import React from "react";
-// import { BrowserRouter as Router ,Routes,Route, BrowserRouter} from "react-router-dom";
-
-import {NavBar} from "./components/navbar/NavBar";
+import { Routes,Route, BrowserRouter} from "react-router-dom";
 import {Main} from "./components/main_page/Main";
 import { OurTeam } from "./components/our_team/OurTeam";
 
@@ -9,17 +7,15 @@ import { OurTeam } from "./components/our_team/OurTeam";
 export const App = ()=> {
 
   return(
-  <>
-    <NavBar/>
-    {/* <BrowserRouter>
-      <Routes> */}
-       
-        <Main/>
-        <OurTeam/>
-      {/* </Routes> */}
+  
+    <BrowserRouter>
+      <Routes>
+        <Route exact path = "/"  element={<Main/>}/> 
+        <Route  exact path = "/natujenge" element={<OurTeam/>}/> 
+        <Route exact path ="/ourteam" element={<OurTeam/>}/>
+      </Routes>
       
-    {/* </BrowserRouter> */}
-  </>
+    </BrowserRouter>
     
   )
 }
