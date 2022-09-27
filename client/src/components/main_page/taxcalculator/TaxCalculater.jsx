@@ -4,24 +4,50 @@ import { FieldInput } from "./FieldInput";
 import { RadioInput } from "./RadioInput"
 import "./taxCalculatorStyle/style.css";
 import axios from "axios";
+import {TaxResult} from "../taxResult/TaxResult"
 
-export const TaxCalculator = () => {
 
-  const [taxResult, setTaxResult] = useState();
-  const [taxError, setTaxError] = useState("no error");
 
-  const data = {};
+export const TaxCalculator = ({setDisp}) => {
 
+  const [taxResult, setTaxResult] = useState({});
+  const [taxError, setTaxError] = useState("");
+  const [grossSalary,setGrossSalary]=useState(0)
+  const [yearOfTaxation,setyearOfTaxation]=useState(0)
+  const [paymentPeriod,setpaymentPeriod]=useState("")
+  const [contributionBenefit,setcontributionBenefit]=useState(0)
+  const [mortageInterest,setmortageInterest]=useState(0)
+  const [insuranceRelief,setinsuranceRelief]=useState(0)
+  const [disability,setDisability]=useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const postTax = async () => {
-    axios.post('http://localhost:8080/paye', data)
-    
-    .then(response => setTaxResult({response}))
-    .catch(error => {
-      setTaxError(error);
-      console.error(taxError);
-    })
+     
+    try {
+      setIsLoading(true);
+       const response=await axios.post('http://localhost:8080/api/payeCalculator', 
+       { grossSalary, paymentPeriod,disability,contributionBenefit,mortageInterest,insuranceRelief },
+      {
+        headers: {
+        'Content-Type': "application/json",
+        'Accept': "application/json",
+        }  
+    } )
+      let result=response.data
+      setTaxResult(result)
+      
+        setIsLoading(false)
+      
+      
+      console.log(taxResult)
+    } catch (error) {
+      
+        setIsLoading(false)
+      
+      setTaxError(error.response.data.message);
+      console.log(error.response.data.message)
 
-    console.log(taxResult);
+    }
+
   }
 
   const formSubmit = (event) =>{
@@ -31,43 +57,48 @@ export const TaxCalculator = () => {
 
   return (
   <>
+    <p className={{color:'red'}}>{taxError}</p>
+
+    {(taxResult === true) && <TaxResult taxResult= {taxResult} />}
+
     <form className="tax-form">
-      
       <FieldInput
       className="yearofTaxation"
         text="Year of Taxation"
         type="year"
-        name="yearOfTaxation"
-        onChange={ event=> data.yearOfTaxation = parseInt(event.target.value || "2000")}
+        name={yearOfTaxation}
+        onChange={ event=> setyearOfTaxation(event.target.value)}
       />
 
      <Dropdown 
-     onChange = { event => data.paymentPeriond = event.target.value || "year"}
+
+     onChange = { event => setpaymentPeriod(event.target.value)}
+
 
      />
      
 
       <FieldInput
         text= "Gross Salary"
-        type = "number"
-        name ="grossSalary"
-        onChange={ event => data.grosSalary = parseInt(event.target.value || "0000")}
+        name ={grossSalary}
+        onChange={ event => setGrossSalary(parseInt( event.target.value))}
         
         
       />
 
       <FieldInput
         text="Contribution Benefit"
-        type="number"
-        name ="contributionBenefit"
-        onChange={event=>data.contribution = parseInt( event.target.value || "0000" )}
+        name ={contributionBenefit}
+        onChange={event=>setcontributionBenefit(parseInt( event.target.value))}
 
       />
 
       <RadioInput
         text=" Do you have any disability exception certificate?"
-        name="disability"
-        onChange={event => {data.disability = event.target.value==="true"}}
+
+        name={disability}
+        onChange={event => (event.target.value === "true") && setDisability(true)}
+
         option1 = "Yes"
         option2 = "No"
         disability
@@ -75,8 +106,10 @@ export const TaxCalculator = () => {
 
       <RadioInput
         text=" Do you have a mortgage?"
-        name="mortgage"
-        onChange={event => data.mortgage = parseInt(event.target.value ||"0000")}
+        name={mortageInterest}
+
+        onChange={event =>setmortageInterest(parseInt( event.target.value))}
+
         option1 = "Yes"
         option2 = "No"
       /> 
@@ -84,18 +117,16 @@ export const TaxCalculator = () => {
 
       <RadioInput
         text="Do you have a life insurance policy?"
-        name="insurance"
-        onChange={event=>data.insurance = parseInt(event.target.value ||"0000")}
+        name={insuranceRelief}
+        onChange={event=>setinsuranceRelief(parseInt( event.target.value))}
         option1 = "Yes"
         option2 = "No"
       /> 
-
-  
-    <div className="calculateBtn">
-        <button style={{backgroundColor: data.yearOfTaxation && data.insurance && data.mortgage && data.disability && data.contribution && data.grosSalary && data.paymentPeriond && "red"}} className = "selectBtn" onClick={formSubmit}>Calculate </button>
-    </div>
-
+ 
+      <button  className ="selectBtn" onClick ={(event) => setDisp(result) formSubmit}>{ isLoading ? "Calculating..." : "Calculate"} </button>
     </form>
+
+    
   </>
   )
 }
