@@ -1,5 +1,11 @@
-# Natujenge-Group-10-Wk-1-Challange
+# Tax calculator and  bill manager
 
-#Everyone should create thier onwn branch bearing their names
-# But don't do that untill we have settled on the tech stack
+An app that lets you input your gross salary , insurance contribution and disability benetits, it then computes your  Paye for the payment periond you provided.
+
+# Contrubutors
+
+Elvis Mariga -
+Owen Miano
+Rachel Karanja
+Kiptanui Boaz
 

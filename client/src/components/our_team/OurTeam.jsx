@@ -1,7 +1,29 @@
-import React from 'react'
+import React from "react";
+import { navBar as NavBar } from "../navBar/navBar";
+import {Footer} from "../footer/Footer"; 
+import {team} from "../assets/team";
+import {TeamCard} from "../our_team/TeamCard";
+
+
 
 export const OurTeam = () => {
   return (
-    <div>OurTeam</div>
+    <div>
+      <NavBar/>
+      {team.map((member,i) =>{
+            return(
+              <TeamCard
+                img ={member.img}
+                link={member.link}
+                name={member.name}
+                i={i}
+              />
+            )
+          }
+        )
+      }
+      
+      <Footer/>
+    </div>
   )
 }

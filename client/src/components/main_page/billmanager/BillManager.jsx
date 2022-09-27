@@ -1,15 +1,15 @@
 import React, {useState} from "react";
-import "./billManager.css";
+import "./billmabagerStyle/style.css";
 
 
 export const BillManager = () => {
-  
+  const [isShown, setIsShown] = useState()
 
   const [clicked,setClicked] = useState(false);
 
   const [newBill, setNewBill] = useState({
-    billName:"",
-    billValue:Number
+    billName:""
+    
   });
 
   const [defaultBill, setDefaultBill] = useState({  
@@ -18,29 +18,34 @@ export const BillManager = () => {
   });
 
   const [bills, setBills] = useState([{billName:"Rent",billValue:Number,},{billName:"Entertainment",billValue:Number,},{billName:"Food",billValue:Number,} ,{billName:"Shopping",billValue:Number,}]);
-  const [computeArray, setComputeArray] = useState([]);
+  const [balance, setBalance] = useState(0);
+  const [computeArray, setComputeArray]= useState([]);
   
-  const pushNewBill = () =>{
-    // let billValue = newBill.billValue 
-    // let billName = newBill.billName
+  const pushNewBill = (event) =>{
+    event.preventDefault();
 
-
-    if(newBill.billName && newBill.billValue ){
+    if(newBill.billName ){
       setBills(current => [...current, newBill])
     }
 
-    console.log(bills)
+    setNewBill({billName:""});
+    setClicked(false);
+
+    
   }
 
-  const pushDefaultBill = ()=>{
-
-    if(defaultBill.billName && defaultBill.billValue){
-      // console.log("defaultBill full")
-    }
-  }
   
 
- 
+  const pushDefaultBill = (defaultBill)=>{
+
+    (computeArray.map((comp)=>comp.billValue).includes(defaultBill.billValue) === false) && setComputeArray(current => [ ...current,defaultBill ])
+    setBalance(computeArray.map((comp)=>comp.billValue).reduce((c,d)=>c+d))
+  }
+  
+  // const computeValues = computeArray.map((item)=>item.billValue) || [0];
+  
+  // // const tempBalance = computeValues.reduce((c,p)=>c+p)
+  
 
   const handleClick= () =>{
     setClicked(true);
@@ -56,48 +61,67 @@ export const BillManager = () => {
         [name]: value
       }
     });
-    pushNewBill()
+  
    
   };
 
-   
+  const removeBill = (a) => {
+    setClicked(false)
+
+    setBills((prevBill) =>{
+      return prevBill.filter((bill, i)=>{
+        return i !== a
+      });
+  })};
+    
 
   return (
     <div className="label-bill">
-          {bills.map((bill,i,bills)=>{
-            return(
-              <div className="label-bill" >
+        {bills.map((bill,a,bills)=>{
+          
+          return(
+
+            <div  onMouseEnter={() => (a > 3) && setIsShown(a)} onMouseLeave={() => setIsShown("")} className="label-bill" >
+
+              <div className="bill" >
 
                 <label>{bill.billName}</label> 
-                <input className="noscroll" onChange={ (event)=>{ setDefaultBill({                   
-                      "billName":bill.billName,
-                      "billValue":parseInt(event.target.value),})
-                      pushDefaultBill()
-                    }
-                  }
-                  
-                  type="number" name="billValue"
-                />
-               
+                <div className="remo">
+                  <input 
+                      autoComplete="off"
+                      className="noscroll"
+                      onChange={ (event)=>{ setDefaultBill({                   
+                        "billName":bill.billName,
+                        "billValue":parseInt(event.target.value),})
+                        //  pushDefaultBill(defaultBill);
+                        
+                      }}
+                    onMouseLeave={()=>  (bill.billName === defaultBill.billName) &&  pushDefaultBill(defaultBill)}
+                    type="number" name="billValue"
+                  />
+                  { isShown === a && <button className="removeBill" onClick={()=>removeBill(a)} >{`Remove ${bill.billName}`.toLocaleLowerCase()} </button> }
+                </div>
+
               </div>
-            )
-          })}
+            
+            </div>
+          )
+        })}
 
-          {clicked &&
-            <div className="secodary-input" >
-              <input onChange={addNewBill} type="text" name="billName" value={newBill.billName} />
-              <input onChange={addNewBill} type="number" name="billValue"  value={parseInt(newBill.billValue)}/>
-            </div> 
-          }
-          <div className="billButtons">
-            <button onClick={ (event)=>{event.preventDefault(); handleClick()}}>Add bill</button>
-            {clicked && <button onClick={()=>!setClicked(false)}>Remove bill</button> }
-          </div>
+        {clicked &&
+          <div className="secodary-input" >
+            <input onChange={addNewBill} type="text" name="billName" value={newBill.billName} />
+            <button onClick={pushNewBill}>+</button>
+          </div> 
+        }
+        
+        <div className="billButtons">
+          <button onClick={ (event)=>{event.preventDefault(); handleClick()}}>Add bill</button>
+        </div>
          
-          
-{/*         
-      <p>{`Balance:  KES ${balance} `}</p>  */}
+      
+      <p className="balance">{`Balance:  KES ${balance} `}</p> 
     </div>
-
+    
   )
 }

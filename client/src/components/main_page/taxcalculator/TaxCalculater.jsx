@@ -2,10 +2,10 @@ import React, {useState} from 'react'
 import { Dropdown } from "./Dropdown";
 import { FieldInput } from "./FieldInput";
 import { RadioInput } from "./RadioInput"
-import "./taxCalculator.css";
+import "./taxCalculatorStyle/style.css";
 import axios from "axios";
 
-export const TaxCalculater = () => {
+export const TaxCalculator = () => {
 
   const [taxResult, setTaxResult] = useState({});
   const [taxError, setTaxError] = useState("");
@@ -55,6 +55,7 @@ export const TaxCalculater = () => {
   <p className={{color:'red'}}>{taxError}</p>
     <form className="tax-form">
       <FieldInput
+      className="yearofTaxation"
         text="Year of Taxation"
         type="year"
         name={yearOfTaxation}
@@ -86,8 +87,11 @@ export const TaxCalculater = () => {
 
       <RadioInput
         text=" Do you have any disability exception certificate?"
+
         name={disability}
-        onChange={event => setDisability(strBool(event.target.value))}
+        onChange={event => setDisability(event.target.value)}
+
+
         option1 = "Yes"
         option2 = "No"
         disability
@@ -113,7 +117,9 @@ export const TaxCalculater = () => {
       /> 
 
   
+
       <button style={{backgroundColor: yearOfTaxation && insuranceRelief && mortageInterest && disability && contributionBenefit && grossSalary && paymentPeriod && "red"}} className = "selectBtn" onClick={formSubmit}>Calculate </button>
+
 
     </form>
   </>
