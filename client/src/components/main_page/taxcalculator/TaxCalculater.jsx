@@ -4,9 +4,11 @@ import { FieldInput } from "./FieldInput";
 import { RadioInput } from "./RadioInput"
 import "./taxCalculatorStyle/style.css";
 import axios from "axios";
+import { useContext } from 'react';
+import { TaxContext } from '../../../context/Taxcontext';
 
 export const TaxCalculator = () => {
-
+  const {taxResult,setTaxResult}=useContext(TaxContext)
   
   const [taxError, setTaxError] = useState("");
   const [grossSalary,setGrossSalary]=useState(0)
