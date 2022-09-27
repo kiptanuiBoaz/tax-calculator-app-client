@@ -7,7 +7,7 @@ import axios from "axios";
 
 export const TaxCalculator = () => {
 
-  const [taxResult, setTaxResult] = useState({});
+  
   const [taxError, setTaxError] = useState("");
   const [grossSalary,setGrossSalary]=useState(0)
   const [yearOfTaxation,setyearOfTaxation]=useState(0)

@@ -1,6 +1,6 @@
 const router=require('express').Router()
 
-router.post('/payeCalculator',(req,res)=>{
+router.post('/payeCalculator',async(req,res)=>{
         //   let contribution=
      try {
           let {grossSalary,paymentPeriod,contributionBenefit,mortageInterest,insuranceRelief,disability}=req.body;
