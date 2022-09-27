@@ -14,6 +14,7 @@
         display: flex;
         justify-content: space-between;
         min-width: 36rem;
+        position: relative;
         
                 input {
                     border: 1px solid #1cb484;
@@ -29,7 +30,21 @@
                     outline-color: #1cb484;
                 }
             
-        
+        .removeBill{
+            // height: 30px;
+            // right:320px;
+            font-size: 14px;
+            padding: .3rem 1em;
+             border-radius:5px;
+             position:sticky;
+             color:white;
+             background-color:rgb(209, 117, 117);
+             border: none;
+        }
+        .remo{
+            display: grid;
+            gap: 4px;
+        }
     }
 
     .secodary-input{
@@ -41,6 +56,7 @@
                 min-height: 24px;
                 font-size: 18px;
                 padding: 4px;
+                margin-inline-start: 2rem;
             }
         
             input:focus {
@@ -48,15 +64,26 @@
                 outline-width: 2px;
                 outline-color: #1cb484;
             }
+            button{
+                background-color: #1cb484;
+                border: none;
+                min-width: 10rem;
+                margin-inline-start: 2rem;
+                    margin-inline-end: 2rem;
+                    border-radius: 5px;
+            }
     }
 
     .billButtons{
         display: flex;
         justify-content: center;
         gap: 20px;
+        border-bottom: 1px solid #1cb484;
+        padding-bottom: 20px;
 
         button{
             background-color: #1cb484;
+            border-radius: 5px;
             padding: 4px 24px;
             border: none;
             font-size: 18px;
@@ -64,4 +91,9 @@
         }
     }
 
+    .balance{
+        text-align: right;
+        margin-inline-end: 2rem;
+        font-weight: 600;
+    }
 }

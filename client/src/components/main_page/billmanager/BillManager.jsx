@@ -89,6 +89,7 @@ export const BillManager = () => {
 
 
                 <label>{bill.billName}</label> 
+                <div className="remo">
                 <input className="noscroll" onChange={ (event)=>{ setDefaultBill({                   
                       "billName":bill.billName,
                       "billValue":parseInt(event.target.value),})
@@ -99,8 +100,9 @@ export const BillManager = () => {
                   
                   type="number" name="billValue"
                 />
-                 { isShown === a && <button onClick={()=>removeBill(a)} style={{  height:"30px", right:"320px", borderRadius:"5px", borderColor:"grey", position:"absolute",color:"white", backgroundColor:"grey"}} >{`Remove ${bill.billName}`.toLocaleLowerCase()} </button> }
-               
+                 { isShown === a && <button className="removeBill" onClick={()=>removeBill(a)} >{`Remove ${bill.billName}`.toLocaleLowerCase()} </button> }
+               </div>
+              </div>
               </div>
               </div>
             )
@@ -119,8 +121,9 @@ export const BillManager = () => {
          
           
         
-      <p>{`Balance:  KES ${balance} `}</p> 
+      <p className="balance">{`Balance:  KES ${balance} `}</p> 
     </div>
+    
 
   )
 }
