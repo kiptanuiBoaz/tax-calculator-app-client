@@ -14,14 +14,12 @@ export const Main = ()=>{
       <Footer/>
     </>
   )
- 
- 
 }
 
 
- const MainPage = () => {
+const MainPage = () => {
   // state to manage the to manage the task of the user
-  const [ task, setTask] = useState("tax");
+  const [ task, setTask] = useState("bill");
 
   const setPage = (event)=>{
    

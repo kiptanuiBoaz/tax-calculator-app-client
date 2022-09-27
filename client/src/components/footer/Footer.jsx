@@ -4,7 +4,7 @@ import { AiFillGithub} from 'react-icons/ai';
 
 export const Footer = () => {
   return (
-    <div class="footer">
+    <div className="footer">
       
       <p>Copyright ©{new Date().getFullYear()} || Created by <span>Group 10</span></p>
       <p>Powered by <span><a href="https://meliora.co.ke/">Meliora</a></span></p>
