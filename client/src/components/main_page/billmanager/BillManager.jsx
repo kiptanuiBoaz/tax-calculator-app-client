@@ -102,6 +102,7 @@ export const BillManager = () => {
                  { isShown === a && <button onClick={()=>removeBill(a)} style={{  height:"30px", right:"320px", borderRadius:"5px", borderColor:"grey", position:"absolute",color:"white", backgroundColor:"grey"}} >{`Remove ${bill.billName}`.toLocaleLowerCase()} </button> }
                
               </div>
+              </div>
             )
           })}
 
