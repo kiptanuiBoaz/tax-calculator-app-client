@@ -6,6 +6,7 @@ import "./mainPageStyle/style.css";
 import { navBar as NavBar } from '../navBar/navBar';
 
 
+
 export const Main = ()=>{
   return(
     <>
@@ -19,7 +20,7 @@ export const Main = ()=>{
 
 const MainPage = () => {
   // state to manage the to manage the task of the user
-  const [ task, setTask] = useState("bill");
+  const [ task, setTask] = useState("tax");
 
   const setPage = (event)=>{
    
@@ -27,7 +28,7 @@ const MainPage = () => {
   }
 
   return (
-    <section className="mainSection">
+    <section style={{marginTop:"100px"}} className="mainSection">
     
       <div  className="mainContent">
         <button className="selectBtn" style= {{backgroundColor:(task === "tax") &&  "#1CB484"}} onClick={setPage} name="tax" >Tax Calculater</button>
@@ -35,8 +36,9 @@ const MainPage = () => {
       </div>
       
       <div className="main-div">
-        {(task === "tax") && <TaxCalculator/> }
+        {(task === "tax") && <TaxCalculator /> }
         {(task === "bill") && <BillManager/> }
+       
 
       </div>
       

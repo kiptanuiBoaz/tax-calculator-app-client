@@ -11,7 +11,7 @@ export const BillManager = () => {
     billName:""
     
   });
-
+  const p= 27000;
   const [defaultBill, setDefaultBill] = useState({  
     billName:"",
    billValue:Number
@@ -120,7 +120,7 @@ export const BillManager = () => {
         </div>
          
       
-      <p className="balance">{`Balance:  KES ${balance} `}</p> 
+      <p className="balance">Balance: {` KES ${ balance } `}</p> 
     </div>
     
   )
