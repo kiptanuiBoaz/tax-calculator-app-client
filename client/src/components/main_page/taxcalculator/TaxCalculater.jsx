@@ -119,7 +119,9 @@ export const TaxCalculator = () => {
 
   
 
-      <button style={{backgroundColor: yearOfTaxation && insuranceRelief && mortageInterest && disability && contributionBenefit && grossSalary && paymentPeriod && "red"}} className = "selectBtn" onClick={formSubmit}>{loading ? "calculating": "Calculate"}</button>
+     <div className="calculateBtn">
+       <button className = "selectBtn" onClick={formSubmit}>{loading ? "calculating": "Calculate"}</button>
+     </div>
 
 
     </form>

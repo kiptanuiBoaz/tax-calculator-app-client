@@ -76,4 +76,21 @@
   border: 2px solid #1cb484;
   color: #1cb484;
   background-color: #ffffff;
+}
+.tax-form .selectBtn,
+.tax-form .selectBtnActive {
+  background-color: #1cb484;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  padding: 4px 24px;
+  color: #ffffff;
+}
+.tax-form .selectBtn {
+  border: 2px solid #1cb484;
+  color: #1cb484;
+  background-color: #ffffff;
 }/*# sourceMappingURL=style.css.map */
