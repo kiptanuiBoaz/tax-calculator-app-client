@@ -3,7 +3,7 @@ import { BillManager } from './billmanager/BillManager';
 import {Footer } from "../footer/Footer"
 import { TaxCalculator } from './taxcalculator/TaxCalculater';
 import "./mainPageStyle/style.css";
-import { navBar as NavBar } from '../navBar/navBar';
+import {  NavBar } from '../navbar/NavBar';
 import { TaxResult } from './taxResult/TaxResult';
 
 

@@ -11,7 +11,7 @@ export const BillManager = () => {
     billName:""
     
   });
-  const p= 27000;
+  
   const [defaultBill, setDefaultBill] = useState({  
     billName:"",
    billValue:Number

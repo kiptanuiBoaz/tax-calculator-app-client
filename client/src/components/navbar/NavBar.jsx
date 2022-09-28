@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import img from "../assets/logo.png";
 import {FcMenu} from "react-icons/fc"
 
-export const navBar = () => {
+export const NavBar = () => {
   return (
     <div className="navbar">
         <div  className="navLeft">
