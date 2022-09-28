@@ -10,11 +10,6 @@ import axios from "axios";
 
 export const TaxCalculator = ({onClick}) => {
 
-
-export const TaxCalculator = ({onClick}) => {
-
-
-
   const [taxResult, setTaxResult] = useState({})
   
 
