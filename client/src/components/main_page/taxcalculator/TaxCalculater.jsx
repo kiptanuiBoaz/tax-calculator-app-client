@@ -10,7 +10,14 @@ import axios from "axios";
 
 export const TaxCalculator = ({onClick}) => {
 
-  const [taxResult, setTaxResult] = useState({});
+
+export const TaxCalculator = ({onClick}) => {
+
+
+
+  const [taxResult, setTaxResult] = useState({})
+  
+
   const [taxError, setTaxError] = useState("");
   const [grossSalary,setGrossSalary]=useState(0)
   const [yearOfTaxation,setyearOfTaxation]=useState(0)
@@ -20,6 +27,8 @@ export const TaxCalculator = ({onClick}) => {
   const [insuranceRelief,setinsuranceRelief]=useState(0)
   const [disability,setDisability]=useState(false)
   const [isLoading, setIsLoading] = useState(false);
+
+  
   const postTax = async () => {
      
     try {
