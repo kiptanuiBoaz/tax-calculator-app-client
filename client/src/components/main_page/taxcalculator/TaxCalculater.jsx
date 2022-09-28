@@ -50,9 +50,9 @@ export const TaxCalculator = () => {
 
 
   return (
+   
   <>
-{(taxResult === true) && <TaxResult taxResult= {taxResult} />}
-
+   {Object.keys(taxResult).length > 0 && <TaxResult /> }
   <p className={{color:'red'}}>{taxError}</p>
     <form className="tax-form">
       <FieldInput
@@ -123,6 +123,7 @@ export const TaxCalculator = () => {
 
 
     </form>
+
   </>
   )
 }

@@ -1,8 +1,11 @@
 import  "./taxResultStyle/style.css";
+import { TaxContext } from "../../../context/Taxcontext";
+import React,{useContext} from 'react'
+import { numberWithCommas } from "../../../utils/format";
 
-import React from 'react'
-
-export const TaxResult = ({grossSalary,PAYE,netPay,taxableIncome,contributionBenefit,insuranceRelief,personalRelief,totalTax}) => {
+export const TaxResult = () => {
+    const {taxResult}=useContext(TaxContext)
+    const {grossSalary,PAYE,netPay,taxableIncome,contributionBenefit,insuranceRelief,personalRelief,totalTax}=taxResult
   return (
     
     <div className="taxResult">
@@ -12,7 +15,7 @@ export const TaxResult = ({grossSalary,PAYE,netPay,taxableIncome,contributionBen
             </div>
             <div className="grossRight">
                 <p className="kes">KES</p>
-                <p className="amount"> {grossSalary}</p>
+                <p className="amount">{numberWithCommas( grossSalary)}</p>
             </div>
         </div>
         <div className="deductions tab">
@@ -25,7 +28,7 @@ export const TaxResult = ({grossSalary,PAYE,netPay,taxableIncome,contributionBen
                         <p className="kes">KES</p>
                     </div>
                     <div className="amount">
-                        <p>{netPay}</p>
+                        <p>{numberWithCommas(netPay)}</p>
                     </div>
                 </div>
             </div>
@@ -38,7 +41,7 @@ export const TaxResult = ({grossSalary,PAYE,netPay,taxableIncome,contributionBen
                         <p className="kes">KES</p>
                     </div>
                     <div className="amount">
-                        <p>{taxableIncome}</p>
+                        <p>{numberWithCommas(taxableIncome)}</p>
                     </div>
                 </div>
             </div>
@@ -51,7 +54,7 @@ export const TaxResult = ({grossSalary,PAYE,netPay,taxableIncome,contributionBen
                         <p className="kes">KES</p>
                     </div>
                     <div className="amount">
-                        <p>{contributionBenefit}</p>
+                        <p>{numberWithCommas(contributionBenefit)}</p>
                     </div>
                 </div>
             </div>
@@ -64,7 +67,7 @@ export const TaxResult = ({grossSalary,PAYE,netPay,taxableIncome,contributionBen
                         <p className="kes">KES</p>
                     </div>
                     <div className="amount">
-                        <p>{insuranceRelief}</p>
+                        <p>{numberWithCommas(insuranceRelief)}</p>
                     </div>
                 </div>
             </div>
@@ -77,7 +80,7 @@ export const TaxResult = ({grossSalary,PAYE,netPay,taxableIncome,contributionBen
                         <p className="kes">KES</p>
                     </div>
                     <div className="amount">
-                        <p>{personalRelief}</p>
+                        <p>{numberWithCommas(personalRelief)}</p>
                     </div>
                 </div>
             </div>
@@ -90,7 +93,7 @@ export const TaxResult = ({grossSalary,PAYE,netPay,taxableIncome,contributionBen
                         <p className="kes">KES</p>
                     </div>
                     <div className="amount">
-                        <p>{totalTax}</p>
+                        <p>{numberWithCommas(totalTax)}</p>
                     </div>
                 </div>
             </div>
@@ -107,7 +110,7 @@ export const TaxResult = ({grossSalary,PAYE,netPay,taxableIncome,contributionBen
                     <p>KES</p>
                 </div>
                 <div className="amount">
-                    <p>{PAYE}</p>
+                    <p>{numberWithCommas(PAYE)}</p>
                 </div>
             </div>
         </div>

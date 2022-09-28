@@ -1,11 +1,12 @@
 import React, {useState,useContext} from "react";
 import "./billmabagerStyle/style.css";
 import { TaxContext } from "../../../context/Taxcontext";
+import { numberWithCommas } from "../../../utils/format";
 
 export const BillManager = () => {
   const [isShown, setIsShown] = useState()
-  const {setTaxResult}=useContext(TaxContext)
-
+  const {taxResult}=useContext(TaxContext)
+  const {netPay}=taxResult
   const [clicked,setClicked] = useState(false);
 
   const [newBill, setNewBill] = useState({
@@ -16,7 +17,6 @@ export const BillManager = () => {
     billName:"",
    billValue:Number
   });
-
   const [bills, setBills] = useState([{billName:"Rent",billValue:Number,},{billName:"Entertainment",billValue:Number,},{billName:"Food",billValue:Number,} ,{billName:"Shopping",billValue:Number,}]);
   const [balance, setBalance] = useState(0);
   const [computeArray, setComputeArray]= useState([]);
@@ -84,7 +84,7 @@ export const BillManager = () => {
 
               <div className="bill" >
                    
-              <p className="netPay">Net Pay: {setTaxResult?.netPay}</p>
+             
                 <label>{bill.billName}</label> 
                 <div className="remo">
                   <input 
@@ -119,8 +119,8 @@ export const BillManager = () => {
           <button onClick={ (event)=>{event.preventDefault(); handleClick()}}>Add bill</button>
         </div>
          
-      
-      <p className="balance">Balance: {` KES ${ balance } `}</p> 
+        <p className="balance">Net Pay: KES {netPay ? numberWithCommas(netPay): 0}</p> 
+      <p className="balance">Balance: KES {numberWithCommas(netPay -balance)}</p> 
     </div>
     
   )
