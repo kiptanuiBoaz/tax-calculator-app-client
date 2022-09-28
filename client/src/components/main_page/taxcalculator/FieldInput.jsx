@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const FieldInput = ({text, type, name,onChange,value }) => {
+export const FieldInput = ({text, type, name,onChange }) => {
   return (
     <label className="label">
-       {text} <input onChange={onChange} type={type} value={value} name={name} />
-      </label>
+       {text} <input onChange={onChange} type={type}  name={name} />
+    </label>
   )
 }
