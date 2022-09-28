@@ -4,11 +4,16 @@ const cors=require('cors')
 
 app.use(cors())
 app.use(express.json())
-const paye=require('./routes/paye')
-app.use('/api',paye);
 
+const paye=require('./routes/paye')
+const expenses=require('./routes/expenses')
+
+app.use('/api',paye);
+app.use('/api',expenses);
 
 
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
+
+

@@ -1,9 +1,24 @@
 import React, {useState} from 'react';
 import { BillManager } from './billmanager/BillManager';
-import { TaxCalculater } from './taxcalculator/TaxCalculater';
-import "./mainPageStyle/style.css"
+import {Footer } from "../footer/Footer"
+import { TaxCalculator } from './taxcalculator/TaxCalculater';
+import "./mainPageStyle/style.css";
+import { navBar as NavBar } from '../navbar/NavBar';
 
-export const Main = () => {
+
+
+export const Main = ()=>{
+  return(
+    <>
+      <NavBar/>
+      <MainPage/>
+      <Footer/>
+    </>
+  )
+}
+
+
+const MainPage = () => {
   // state to manage the to manage the task of the user
   const [ task, setTask] = useState("tax");
 
@@ -13,7 +28,7 @@ export const Main = () => {
   }
 
   return (
-    <section className="mainSection">
+    <section style={{marginTop:"100px"}} className="mainSection">
     
       <div  className="mainContent">
         <button className="selectBtn" style= {{backgroundColor:(task === "tax") &&  "#1CB484"}} onClick={setPage} name="tax" >Tax Calculater</button>
@@ -21,8 +36,9 @@ export const Main = () => {
       </div>
       
       <div className="main-div">
-        {(task === "tax") && <TaxCalculater /> }
+        {(task === "tax") && <TaxCalculator /> }
         {(task === "bill") && <BillManager/> }
+       
 
       </div>
       
