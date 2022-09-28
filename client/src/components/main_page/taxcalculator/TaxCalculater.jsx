@@ -4,11 +4,11 @@ import { FieldInput } from "./FieldInput";
 import { RadioInput } from "./RadioInput"
 import "./taxCalculatorStyle/style.css";
 import axios from "axios";
-import {TaxResult} from "../taxResult/TaxResult"
 
 
 
-export const TaxCalculator = ({setDisp}) => {
+
+export const TaxCalculator = ({onClick}) => {
 
   const [taxResult, setTaxResult] = useState({});
   const [taxError, setTaxError] = useState("");
@@ -34,14 +34,11 @@ export const TaxCalculator = ({setDisp}) => {
     } )
       let result=response.data
       setTaxResult(result)
-      
-        setIsLoading(false)
-      
-      
+      setTimeout(setIsLoading(false),3000)
       console.log(taxResult)
     } catch (error) {
       
-        setIsLoading(false)
+      setTimeout(setIsLoading(false),3000)
       
       setTaxError(error.response.data.message);
       console.log(error.response.data.message)
@@ -51,6 +48,9 @@ export const TaxCalculator = ({setDisp}) => {
   }
 
   const formSubmit = (event) =>{
+    // onClick(event)
+    
+    setTimeout( onClick(event),3000)
     event.preventDefault();
     postTax();
   }
@@ -58,8 +58,6 @@ export const TaxCalculator = ({setDisp}) => {
   return (
   <>
     <p className={{color:'red'}}>{taxError}</p>
-
-    {(taxResult === true) && <TaxResult taxResult= {taxResult} />}
 
     <form className="tax-form">
       <FieldInput
@@ -123,7 +121,7 @@ export const TaxCalculator = ({setDisp}) => {
         option2 = "No"
       /> 
  
-      <button  className ="selectBtn" onClick ={(event) => setDisp(result) formSubmit}>{ isLoading ? "Calculating..." : "Calculate"} </button>
+      <button name="result"  className ="selectBtn" onClick={(event)=>formSubmit(event)}>{ isLoading ? "Calculating..." : "Calculate"} </button>
     </form>
 
     

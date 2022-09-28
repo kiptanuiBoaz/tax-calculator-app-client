@@ -4,6 +4,8 @@ import {Footer } from "../footer/Footer"
 import { TaxCalculator } from './taxcalculator/TaxCalculater';
 import "./mainPageStyle/style.css";
 import { navBar as NavBar } from '../navBar/navBar';
+import { TaxResult } from './taxResult/TaxResult';
+
 
 
 
@@ -36,9 +38,9 @@ const MainPage = () => {
       </div>
       
       <div className="main-div">
-        {(task === "tax") && <TaxCalculator /> }
+        {(task === "tax") && <TaxCalculator onClick={setPage} /> }
         {(task === "bill") && <BillManager/> }
-       
+        {(task === "result") && <TaxResult/>}
 
       </div>
       
