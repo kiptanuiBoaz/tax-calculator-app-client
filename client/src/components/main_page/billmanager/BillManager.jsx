@@ -120,7 +120,7 @@ export const BillManager = () => {
         </div>
          
         <p className="balance">Net Pay: KES {netPay ? numberWithCommas(netPay): 0}</p> 
-      <p className="balance">Balance: KES {numberWithCommas(netPay -balance)}</p> 
+      <p className="balance">Balance: KES {numberWithCommas(netPay ? netPay: 0-balance)}</p> 
     </div>
     
   )
