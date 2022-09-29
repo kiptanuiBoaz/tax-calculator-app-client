@@ -33,16 +33,15 @@ export const BillManager = () => {
       }
     );
       
-    
-      
+    calculateBalance();
   };
   console.log(computeValues)
   
   const calculateBalance = ()=>{
-    setBalance((Object.values(computeValues).reduce((c,d)=>c+d)))
+    setBalance((Object.values(computeValues).reduce((c,d)=>c+d,0)))
   };
 
-  Object.values(computeValues) >0 && calculateBalance();
+   
 
   const handleClick= () =>{
     setClicked(true);
@@ -90,10 +89,11 @@ export const BillManager = () => {
                 <label>{bill.billName}</label> 
                 <div className="remo">
                   <input 
-                      autoComplete="off"
-                      className="noscroll"
-                      onChange={(event)=>  pushDefaultBill(event)}
+                    autoComplete="off"
+                    className="noscroll"
+                    onChange={(event)=>  pushDefaultBill(event)}
                     type="number" name={bill.billName}
+                    onMouseLeave={(event)=>pushDefaultBill(event)}
                   />
                   { isShown === a && <button name={bill.billName} className="removeBill" onClick={(event)=>removeBill(a,event)} >{`Remove ${bill.billName}`.toLocaleLowerCase()} </button> }
                 </div>
