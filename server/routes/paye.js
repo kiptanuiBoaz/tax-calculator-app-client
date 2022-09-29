@@ -3,9 +3,9 @@ const router=require('express').Router()
 router.post('/payeCalculator',async(req,res)=>{
         //   let contribution=
      try {
-          let {grossSalary,paymentPeriod,contributionBenefit,mortageInterest,insuranceRelief,disability}=req.body;
-          if(!grossSalary) return res.status(404).json({message:"Please set your gross salary"});
-          if(!paymentPeriod) return res.status(404).json({message:"Is it a monthly payment"});
+          let {grossSalary,paymentPeriod,contributionBenefit,mortageInterest,insuranceRelief,disability}=req.body.taxRequest;
+          if(!taxRequest.grossSalary) return res.status(404).json({message:"Please set your gross salary"});
+          if(!taxRequest.paymentPeriod) return res.status(404).json({message:"Is it a monthly payment"});
         
           contributionBenefit=contributionBenefit ? contributionBenefit : 1080;
           contributionBenefit=paymentPeriod==="Year" ? contributionBenefit * 12 : contributionBenefit ;

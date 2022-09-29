@@ -11,41 +11,38 @@ export const BillManager = () => {
     billName:""
     
   });
-  
-  const [defaultBill, setDefaultBill] = useState({  
-    billName:"",
-   billValue:Number
-  });
 
   const [bills, setBills] = useState([{billName:"Rent",billValue:Number,},{billName:"Entertainment",billValue:Number,},{billName:"Food",billValue:Number,} ,{billName:"Shopping",billValue:Number,}]);
   const [balance, setBalance] = useState(0);
-  const [computeArray, setComputeArray]= useState([]);
+  const [computeValues, setComputeValues]= useState([]);
   
   const pushNewBill = (event) =>{
     event.preventDefault();
-
-    if(newBill.billName ){
-      setBills(current => [...current, newBill])
-    }
-
+    (newBill.billName ) && setBills(current => [...current, newBill])
     setNewBill({billName:""});
     setClicked(false);
+  }
 
+  
+
+  const pushDefaultBill = (event)=>{
+    const {name, value}= event.target;
     
-  }
+    setComputeValues(prev => {
+        return  {...prev, [name]: parseInt(value)  || 0}
+      }
+    );
+      
+    
+      
+  };
+  console.log(computeValues)
+  
+  const calculateBalance = ()=>{
+    setBalance((Object.values(computeValues).reduce((c,d)=>c+d)))
+  };
 
-  
-
-  const pushDefaultBill = (defaultBill)=>{
-
-    (computeArray.map((comp)=>comp.billValue).includes(defaultBill.billValue) === false) && setComputeArray(current => [ ...current,defaultBill ])
-    setBalance(computeArray.map((comp)=>comp.billValue).reduce((c,d)=>c+d))
-  }
-  
-  // const computeValues = computeArray.map((item)=>item.billValue) || [0];
-  
-  // // const tempBalance = computeValues.reduce((c,p)=>c+p)
-  
+  Object.values(computeValues) >0 && calculateBalance();
 
   const handleClick= () =>{
     setClicked(true);
@@ -61,18 +58,23 @@ export const BillManager = () => {
         [name]: value
       }
     });
-  
-   
+
   };
 
-  const removeBill = (a) => {
+  const removeBill = (a,event) => {
     setClicked(false)
 
     setBills((prevBill) =>{
       return prevBill.filter((bill, i)=>{
         return i !== a
       });
-  })};
+    })
+
+    setComputeValues(prev =>( 
+      {...prev, [event.target.name]: 0}
+    ))
+  };
+
     
 
   return (
@@ -81,7 +83,7 @@ export const BillManager = () => {
           
           return(
 
-            <div  onMouseEnter={() => (a > 3) && setIsShown(a)} onMouseLeave={() => setIsShown("")} className="label-bill" >
+            <div key={a} onMouseEnter={() => (a > 3) && setIsShown(a)} onMouseLeave={() => setIsShown("")} className="label-bill" >
 
               <div className="bill" >
 
@@ -90,16 +92,10 @@ export const BillManager = () => {
                   <input 
                       autoComplete="off"
                       className="noscroll"
-                      onChange={ (event)=>{ setDefaultBill({                   
-                        "billName":bill.billName,
-                        "billValue":parseInt(event.target.value),})
-                        //  pushDefaultBill(defaultBill);
-                        
-                      }}
-                    onMouseLeave={()=>  (bill.billName === defaultBill.billName) &&  pushDefaultBill(defaultBill)}
-                    type="number" name="billValue"
+                      onChange={(event)=>  pushDefaultBill(event)}
+                    type="number" name={bill.billName}
                   />
-                  { isShown === a && <button className="removeBill" onClick={()=>removeBill(a)} >{`Remove ${bill.billName}`.toLocaleLowerCase()} </button> }
+                  { isShown === a && <button name={bill.billName} className="removeBill" onClick={(event)=>removeBill(a,event)} >{`Remove ${bill.billName}`.toLocaleLowerCase()} </button> }
                 </div>
 
               </div>
