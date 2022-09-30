@@ -35,7 +35,7 @@ export const BillManager = () => {
       
     calculateBalance();
   };
-  console.log(computeValues)
+  // console.log(computeValues)
   
   const calculateBalance = ()=>{
     setBalance((Object.values(computeValues).reduce((c,d)=>c+d,0)))
@@ -43,10 +43,7 @@ export const BillManager = () => {
 
    
 
-  const handleClick= () =>{
-    setClicked(true);
-  
-  };
+  const handleClick= () =>{setClicked(true); };
 
   const addNewBill = (event)=> {
     const {name, value} = event.target;
