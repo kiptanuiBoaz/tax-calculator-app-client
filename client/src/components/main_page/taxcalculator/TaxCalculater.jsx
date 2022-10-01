@@ -11,7 +11,7 @@ import axios from "axios";
 export const TaxCalculator = ({onClick}) => {
 
   const [taxResult, setTaxResult] = useState()
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [taxError, setTaxError] = useState("");
   const [grossSalary,setGrossSalary]=useState(0)
   // const [yearOfTaxation,setyearOfTaxation]=useState(0)
@@ -22,38 +22,37 @@ export const TaxCalculator = ({onClick}) => {
   const [disability,setDisability]=useState(false)
   
       
-    const postTax = async () => {
+  const postTax = () => {
+    setIsLoading(true);
+    const payLoad = {grossSalary,paymentPeriod,contributionBenefit,mortageInterest,insuranceRelief,disability};
+    const url = "http://localhost:8080/api/payeCalculator";
+    
       
-      try {
+    axios 
+      .post(url, payLoad, 
+        {
+          headers: {
+            'Content-Type': "application/json",
+            'Accept': "application/json",
+          }  
+        })
+
+        .then((response) => {
+          setTaxResult(response.data)
+          console.log(taxResult)
         
-        const response = await axios.post('http://localhost:8080/api/payeCalculator', 
-          {grossSalary,paymentPeriod,contributionBenefit,mortageInterest,insuranceRelief,disability}, 
-          //  ,
-          {
-            headers: {
-              'Content-Type': "application/json",
-              'Accept': "application/json",
-            }  
-          } 
-        )
-        const result = response.data
-        setTaxResult(result)
-        
-        console.log(taxResult)
-      } 
+        })
+    
 
-      catch (error) {
-        
-        setTaxError(error.response.data.message);
-        console.log(error.response.data.message)
+        .catch ((error)=> {
+          setTaxError(error.response.data.message);
+          console.log(taxError)
 
-      }
+        })
 
-      finally{
-        setIsLoading(false);
-      }
+        .finally(()=>setIsLoading(false));
 
-    };
+  };
 
 
   const formSubmit = (event) =>{
