@@ -10,20 +10,18 @@ export const OurTeam = () => {
   return (
     <div>
       <NavBar/>
+
       {team.map((member,i) =>{
             return(
-              <TeamCard
-                img ={member.img}
-                link={member.link}
-                name={member.name}
-                i={i}
-              />
+              <TeamCard i={i} {...member}  />
             )
           }
         )
       }
       
       <Footer/>
+
+      
     </div>
   )
 }

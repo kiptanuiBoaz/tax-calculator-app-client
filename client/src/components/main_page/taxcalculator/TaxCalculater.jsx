@@ -1,17 +1,17 @@
-import React, { useState} from 'react'
+import React, { useState,useContext} from 'react'
 import { Dropdown } from "./Dropdown";
 import { FieldInput } from "./FieldInput";
 import { RadioInput } from "./RadioInput"
 import "./taxCalculatorStyle/style.css";
 import axios from "axios";
+import { TaxContext } from '../../../context/Taxcontext';
 
 
 
 
 export const TaxCalculator = ({onClick}) => {
-
-  const [taxResult, setTaxResult] = useState()
-  const [isLoading, setIsLoading] = useState(false);
+  const {taxResult,setTaxResult}=useContext(TaxContext)
+    const [isLoading, setIsLoading] = useState(false);
   const [taxError, setTaxError] = useState("");
   const [grossSalary,setGrossSalary]=useState(0)
   // const [yearOfTaxation,setyearOfTaxation]=useState(0)
@@ -39,7 +39,7 @@ export const TaxCalculator = ({onClick}) => {
 
         .then((response) => {
           setTaxResult(response.data)
-          console.log(taxResult)
+          console.log(response.data)
         
         })
     
