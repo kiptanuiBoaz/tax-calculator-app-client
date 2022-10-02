@@ -1,10 +1,7 @@
 import  "./taxResultStyle/style.css";
-import { TaxContext } from "../../../context/Taxcontext";
-import React,{useContext} from 'react'
+import React from 'react'
 
-
-export const TaxResult = () => {
-    const {taxResult}=useContext(TaxContext)
+export const TaxResult = ({taxResult}) => {
     const {grossSalary,PAYE,netPay,taxableIncome,contributionBenefit,insuranceRelief,personalRelief,totalTax}=taxResult
   return (
     
