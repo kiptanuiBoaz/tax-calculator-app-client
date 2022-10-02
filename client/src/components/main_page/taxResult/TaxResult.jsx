@@ -1,8 +1,10 @@
 import  "./taxResultStyle/style.css";
-import React from 'react'
+import {useSelector} from "react-redux";
+import React from 'react';
 
-export const TaxResult = ({taxResult}) => {
-    const {grossSalary,PAYE,netPay,taxableIncome,contributionBenefit,insuranceRelief,personalRelief,totalTax}=taxResult
+
+export const TaxResult = () => {
+    const {grossSalary,PAYE,netPay,taxableIncome,contributionBenefit,insuranceRelief,personalRelief,totalTax}=  useSelector((state)=>state.resulting.result);
   return (
     
     <div className="taxResult">

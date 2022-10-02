@@ -1,16 +1,19 @@
-import React, { useState} from 'react'
+import React, { useState} from 'react';
+import { useDispatch} from 'react-redux';
 import { Dropdown } from "./Dropdown";
 import { FieldInput } from "./FieldInput";
 import { RadioInput } from "./RadioInput"
 import "./taxCalculatorStyle/style.css";
 import axios from "axios";
-
+import {updateTaxResult} from "../../features/resultSlice"
 
 
 
 export const TaxCalculator = ({onClick}) => {
-  const {taxResult,setTaxResult}=useState()
-    const [isLoading, setIsLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  const {taxResult,setTaxResult}=useState(null)
+  const [isLoading, setIsLoading] = useState(false);
   const [taxError, setTaxError] = useState("");
   const [grossSalary,setGrossSalary]=useState(0)
   // const [yearOfTaxation,setyearOfTaxation]=useState(0)
@@ -39,6 +42,8 @@ export const TaxCalculator = ({onClick}) => {
         .then((response) => {
           setTaxResult(response.data)
           console.log(response.data)
+
+          dispatch(updateTaxResult(taxResult || 0))
         
         })
     
@@ -80,7 +85,7 @@ export const TaxCalculator = ({onClick}) => {
         <FieldInput
           text= "Gross Salary"
           name ="grossSalary"
-          onChange={ event =>  setGrossSalary(parseInt(event.target.value))}
+          onChange= { event =>  setGrossSalary(parseInt(event.target.value))}
         />
 
         <FieldInput
@@ -94,7 +99,7 @@ export const TaxCalculator = ({onClick}) => {
         <RadioInput
           text=" Do you have any disability exception certificate?"
           name="disability"
-          onChange={event => (event.target.value === "true") && setDisability(true)}
+          onChange={event =>{ (event.target.value === "true") && setDisability(true)}}
           option1 = "Yes"
           option2 = "No"
           disability

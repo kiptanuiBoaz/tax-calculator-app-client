@@ -4,7 +4,7 @@ import { Footer } from "../footer/Footer"
 import { TaxCalculator } from './taxcalculator/TaxCalculater';
 import "./mainPageStyle/style.css";
 import { NavBar } from '../navbar/NavBar';
-import { TaxResult } from './taxResult/TaxResult';
+import { TaxResult } from "./taxResult/TaxResult";
 
 
 
