@@ -5,8 +5,9 @@ import React from 'react';
 
 export const TaxResult = () => {
     const taxResult = useSelector((state)=>state.resulting.taxResult);
-    console.log(taxResult)
+    
     const {grossSalary,PAYE,netPay,taxableIncome,contributionBenefit,insuranceRelief,personalRelief,totalTax} =  taxResult;
+    console.log(taxResult.grossSalary);
   return (
     
     <div className="taxResult">
@@ -42,7 +43,7 @@ export const TaxResult = () => {
                         <p className="kes">KES</p>
                     </div>
                     <div className="amount">
-                        <p>{taxableIncome}</p>
+                        <p>{`${taxableIncome}`}</p>
                     </div>
                 </div>
             </div>

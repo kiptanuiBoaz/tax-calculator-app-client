@@ -1,13 +1,22 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    taxResult: null
+    taxResult: {
+        grossSalary:0,
+        PAYE:0,
+        netPay:0,
+        taxableIncome:0,
+        contributionBenefit:0,
+        insuranceRelief:0,
+        personalRelief:0,
+        totalTax:0
+    }
 }
-const taxResultSlice = createSlice({
+export const taxResultSlice = createSlice({
     name: "resulting",
     initialState,
     reducers:{
-        updateTaxResult:(state,action)=> { state.taxResult= action.payload}
+        updateTaxResult:(state,action)=> { state.taxResult = action.payload}
     },
 
 })

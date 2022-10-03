@@ -26,7 +26,7 @@ export const TaxCalculator = ({onClick}) => {
       
   const postTax = () => {
     setIsLoading(true);
-    const payLoad = {grossSalary,yearOfTaxation,paymentPeriod,contributionBenefit,mortageInterest,insuranceRelief,disability};
+    const payLoad = {grossSalary,paymentPeriod,contributionBenefit,mortageInterest,insuranceRelief,disability};
     const url = "http://localhost:8080/api/payeCalculator";
     
       
@@ -43,8 +43,6 @@ export const TaxCalculator = ({onClick}) => {
           setTaxResult(response.data)
           console.log(response.data)
 
-          dispatch(updateTaxResult(taxResult || 0))
-        
         })
     
 
@@ -54,7 +52,10 @@ export const TaxCalculator = ({onClick}) => {
 
         })
 
-        .finally(()=>setIsLoading(false));
+        .finally(()=>{
+          setIsLoading(false);
+          dispatch(updateTaxResult(taxResult || 0));
+        });
 
   };
 
@@ -69,7 +70,7 @@ export const TaxCalculator = ({onClick}) => {
   
   return (
     <>
-      <p className={{color:'red'}}>{taxError}</p>
+      <p className={{color:'red'}}>{taxError}{ yearOfTaxation}</p>
 
       <form className="tax-form">
         <FieldInput
