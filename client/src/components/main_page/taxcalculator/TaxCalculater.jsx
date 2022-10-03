@@ -16,7 +16,7 @@ export const TaxCalculator = ({onClick}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [taxError, setTaxError] = useState("");
   const [grossSalary,setGrossSalary]=useState(0)
-  // const [yearOfTaxation,setyearOfTaxation]=useState(0)
+  const [yearOfTaxation,setyearOfTaxation]=useState(0)
   const [paymentPeriod,setpaymentPeriod]=useState("")
   const [contributionBenefit,setcontributionBenefit]=useState(0)
   const [mortageInterest,setmortageInterest]=useState(0)
@@ -26,7 +26,7 @@ export const TaxCalculator = ({onClick}) => {
       
   const postTax = () => {
     setIsLoading(true);
-    const payLoad = {grossSalary,paymentPeriod,contributionBenefit,mortageInterest,insuranceRelief,disability};
+    const payLoad = {grossSalary,yearOfTaxation,paymentPeriod,contributionBenefit,mortageInterest,insuranceRelief,disability};
     const url = "http://localhost:8080/api/payeCalculator";
     
       
@@ -77,7 +77,7 @@ export const TaxCalculator = ({onClick}) => {
           text="Year of Taxation"
           type="year"
           name="yearOfTaxation"
-          // onChange={ event=> setyearOfTaxation (parseInt(event.target.value))}
+          onChange={ event=> setyearOfTaxation (parseInt(event.target.value))}
         />
 
         <Dropdown  onChange = { event =>  setpaymentPeriod(event.target.value)} />

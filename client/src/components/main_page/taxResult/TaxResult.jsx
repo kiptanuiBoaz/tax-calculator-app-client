@@ -4,7 +4,9 @@ import React from 'react';
 
 
 export const TaxResult = () => {
-    const {grossSalary,PAYE,netPay,taxableIncome,contributionBenefit,insuranceRelief,personalRelief,totalTax}=  useSelector((state)=>state.resulting.result);
+    const taxResult = useSelector((state)=>state.resulting.taxResult);
+    console.log(taxResult)
+    const {grossSalary,PAYE,netPay,taxableIncome,contributionBenefit,insuranceRelief,personalRelief,totalTax} =  taxResult;
   return (
     
     <div className="taxResult">

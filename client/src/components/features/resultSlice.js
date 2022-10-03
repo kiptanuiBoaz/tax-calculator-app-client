@@ -1,15 +1,18 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-
-export const taxResultSlice = createSlice({
+const initialState = {
+    taxResult: null
+}
+const taxResultSlice = createSlice({
     name: "resulting",
-    taxResult:{},
-
+    initialState,
     reducers:{
-        updateTaxResult:(state,action)=> { state.result= action.payload}
+        updateTaxResult:(state,action)=> { state.taxResult= action.payload}
     },
 
 })
 
 export const {updateTaxResult} = taxResultSlice.actions;
 export default taxResultSlice.reducer;
+
+// Natujenge2022#OYF
