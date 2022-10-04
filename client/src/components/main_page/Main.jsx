@@ -24,11 +24,12 @@ export const Main = () => {
 const MainPage = () => {
   // state to manage the to manage the task of the user
   const [task, setTask] = useState("tax");
-  const [taxResult, setTaxResult] = useState();
-  const setPage = (event,taxRequest1) => {
-    setTaxResult(taxRequest1)
-    setTask(event.target.name);
+  const setPage = (e) => {
+    
+    setTask(e.target.name);
   }
+
+
 
   return (
     <section style={{ marginTop: "100px" }} className="mainSection">
@@ -41,7 +42,7 @@ const MainPage = () => {
       <div className="main-div">
         {(task === "tax") && <TaxCalculator onClick={setPage} />}
         {(task === "bill") && <BillManager />}
-        {(task === "result") && <TaxResult TaxResult={taxResult} />}
+        {(task === "result") && <TaxResult />}
 
       </div>
 

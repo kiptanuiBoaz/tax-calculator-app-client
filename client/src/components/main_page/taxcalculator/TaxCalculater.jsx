@@ -23,9 +23,8 @@ export const TaxCalculator = ({onClick}) => {
   const [insuranceRelief,setinsuranceRelief]=useState(0)
   const [disability,setDisability]=useState(false);
   
-  const taxResult = useSelector((state)=>state.resulting.taxResult);
 
-  console.log(taxResult)
+  
       
   const postTax = async() => {
 
@@ -45,37 +44,15 @@ export const TaxCalculator = ({onClick}) => {
       
     } catch (error) {
       console.log(error)
+      setTaxError(error)
     }
 
     
-      
-    // axios 
-    //   .post(url, payLoad, 
-    //     {
-    //       headers: {
-    //         'Content-Type': "application/json",
-    //         'Accept': "application/json",
-    //       }  
-    //     })
-    //     .then((response) => {
-    //       setTaxResult(response.data)
-    //       console.log(response.data)
-    //     })
-    //     .catch ((error)=> {
-    //       setTaxError(error.response.data);
-    //       console.log(error.response.data.message)
-    //     })
-    //     .finally(()=>{
-    //       setIsLoading(false);
-    //       dispatch(updateTaxResult(taxResult || 0));
-    //     });
-
-
   };
 
 
   const formSubmit = (e) =>{
-    onClick(e,taxResult)
+    grossSalary && onClick(e)
     e.preventDefault();
     grossSalary && postTax();
     
@@ -84,7 +61,7 @@ export const TaxCalculator = ({onClick}) => {
   
   return (
     <>
-      <p className={{color:'red'}}>{taxError}{ yearOfTaxation}</p>
+      {/* <p className={{color:'red'}}>{taxError}{ yearOfTaxation}</p> */}
 
       <form className="tax-form">
         <FieldInput
@@ -107,7 +84,6 @@ export const TaxCalculator = ({onClick}) => {
           text="Contribution Benefit"
           name ="contributionBenefit"
           onChange={e=> setcontributionBenefit( parseInt(e.target.value))}
-         
 
         />
 

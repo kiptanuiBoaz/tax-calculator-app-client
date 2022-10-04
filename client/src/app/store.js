@@ -1,5 +1,6 @@
 import {configureStore} from "@reduxjs/toolkit";
 import taxResultSlice from "../components/features/resultSlice";
+import yearOfTaxationSlice from "../components/features/yearOfTaxation"
 
 export const store = configureStore({
     reducer:{

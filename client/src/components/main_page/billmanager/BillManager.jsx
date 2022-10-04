@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import "./billmabagerStyle/style.css";
+import { useSelector } from "react-redux";
 
 
 export const BillManager = () => {
@@ -23,6 +24,9 @@ export const BillManager = () => {
     setClicked(false);
   }
 
+  const netPay = useSelector((state)=>state.resulting.taxResult.netPay);
+  
+
   
 
   const pushDefaultBill = (event)=>{
@@ -38,7 +42,7 @@ export const BillManager = () => {
   // console.log(computeValues)
   
   const calculateBalance = ()=>{
-    setBalance((Object.values(computeValues).reduce((c,d)=>c+d,0)))
+    setBalance(netPay - (Object.values(computeValues).reduce((c,d)=>c+d,0)))
   };
 
    
@@ -71,7 +75,7 @@ export const BillManager = () => {
     ))
   };
 
-    
+  
 
   return (
     <div className="label-bill">
@@ -111,9 +115,10 @@ export const BillManager = () => {
         <div className="billButtons">
           <button onClick={ (event)=>{event.preventDefault(); handleClick()}}>Add bill</button>
         </div>
-         
       
-      <p className="balance">Balance: {` KES ${ balance } `}</p> 
+        <p className="balance">Net Pay: {` KES ${ netPay } `}</p>
+      
+        <p className="balance">Balance:<span  style={{color: netPay * 0.2 > balance  ? "red" : "#1CB484" }}>{` KES ${ balance } `}</span> </p> 
     </div>
     
   )
