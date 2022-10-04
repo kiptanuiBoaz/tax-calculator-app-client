@@ -13,7 +13,7 @@ export const OurTeam = () => {
 
       {team.map((member,i) =>{
             return(
-              <TeamCard i={i} {...member}  />
+              <TeamCard i={i} {...member}  key={ member.id} />
             )
           }
         )
