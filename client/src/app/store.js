@@ -1,16 +1,11 @@
 import {  configureStore} from "@reduxjs/toolkit";
 import taxResultSlice from "../components/features/resultSlice";
-import yearOfTaxationSlice from "../components/features/yearOfTaxation";
-import { combineReducers } from "@reduxjs/toolkit";
 
-const rootReducer  =  combineReducers({
-    taxYear: yearOfTaxationSlice,
-    resulting: taxResultSlice,
-})
+
 
 export const store = configureStore({
     reducer:{
-        reducer: rootReducer ,
+        reducer: taxResultSlice,
        
     }
 })

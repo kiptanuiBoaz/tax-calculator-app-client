@@ -9,7 +9,8 @@ const initialState = {
         contributionBenefit:0,
         insuranceRelief:0,
         personalRelief:0,
-        totalTax:0
+        totalTax:0,
+        taxYear:2000,
     }
 }
 export const taxResultSlice = createSlice({

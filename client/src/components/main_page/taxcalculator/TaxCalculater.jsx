@@ -6,7 +6,6 @@ import { RadioInput } from "./RadioInput"
 import "./taxCalculatorStyle/style.css";
 import axios from "axios";
 import {updateTaxResult} from "../../features/resultSlice";
-import { updatePaymentPeriod } from '../../features/yearOfTaxation';
 
 
 export const TaxCalculator = ({onClick}) => {
@@ -15,7 +14,7 @@ export const TaxCalculator = ({onClick}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [taxError, setTaxError] = useState("");
   const [grossSalary,setGrossSalary]=useState(0)
-  const [yearOfTaxation,setyearOfTaxation]=useState(0)
+  const [taxYear,setTaxYear]=useState(0)
   const [paymentPeriod,setpaymentPeriod]=useState("")
   const [contributionBenefit,setcontributionBenefit]=useState(0)
   const [mortageInterest,setmortageInterest]=useState(0)
@@ -55,9 +54,8 @@ export const TaxCalculator = ({onClick}) => {
   const formSubmit = (e) =>{
     grossSalary && onClick(e)
     e.preventDefault();
-    grossSalary && postTax() &&  dispatch(updatePaymentPeriod(yearOfTaxation));
+    grossSalary && postTax() ;
 
-    
   };
 
   
@@ -71,7 +69,7 @@ export const TaxCalculator = ({onClick}) => {
           text="Year of Taxation"
           type="year"
           name="yearOfTaxation"
-          onChange={ e=> setyearOfTaxation (parseInt(e.target.value))}
+          onChange={ e => dispatch(updateTaxResult((parseInt(e.target.value))))}
         />
 
         <Dropdown  onChange = { e =>  setpaymentPeriod(e.target.value)} />
