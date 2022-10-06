@@ -24,14 +24,10 @@ export const Main = () => {
 const MainPage = () => {
   // state to manage the to manage the task of the user
   const [task, setTask] = useState("tax");
-  const setPage = (e) => {
-    
-    setTask(e.target.name);
-  }
 
-    
+  const setPage = e =>  setTask(e.target.name);
 
-
+  
   return (
     <section style={{ marginTop: "100px" }} className="mainSection">
 

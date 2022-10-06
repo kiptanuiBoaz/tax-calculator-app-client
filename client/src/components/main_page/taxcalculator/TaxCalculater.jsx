@@ -40,6 +40,7 @@ export const TaxCalculator = ({onClick}) => {
       })
       setIsLoading(false);
       dispatch(updateTaxResult(res.data));
+      console.log(res.data)
       
     } catch (error) {
      
