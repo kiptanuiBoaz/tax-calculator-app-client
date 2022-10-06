@@ -5,12 +5,15 @@ import React from 'react';
 
 export const TaxResult = () => {
     const taxResult = useSelector((state)=>state.resulting.taxResult);
+    const taxYear = useSelector((state)=>state.taxYear.yearOfTaxation);
+   
     
     const {grossSalary,PAYE,netPay,taxableIncome,contributionBenefit,insuranceRelief,personalRelief,totalTax} =  taxResult;
-    console.log(taxResult.grossSalary);
+    console.log(taxYear);
   return (
     
     <div className="taxResult">
+        <p>This is the tax breakdown for the year {taxYear}</p>
         <div className="grossSalary tab">
             <div className="grossLeft">
                 <p className="grossTitle">Gross Salary</p>

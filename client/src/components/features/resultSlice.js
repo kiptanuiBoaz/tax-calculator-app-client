@@ -25,3 +25,5 @@ export const {updateTaxResult} = taxResultSlice.actions;
 export default taxResultSlice.reducer;
 
 // Natujenge2022#OYF
+// 157.230.13.246
+// ssh @root

@@ -6,8 +6,7 @@ import { RadioInput } from "./RadioInput"
 import "./taxCalculatorStyle/style.css";
 import axios from "axios";
 import {updateTaxResult} from "../../features/resultSlice";
-import { useSelector } from 'react-redux';
-
+import { updatePaymentPeriod } from '../../features/yearOfTaxation';
 
 
 export const TaxCalculator = ({onClick}) => {
@@ -43,8 +42,9 @@ export const TaxCalculator = ({onClick}) => {
       dispatch(updateTaxResult(res.data));
       
     } catch (error) {
-      console.log(error)
+     
       setTaxError(error)
+      console.log(taxError)
     }
 
     
@@ -54,7 +54,8 @@ export const TaxCalculator = ({onClick}) => {
   const formSubmit = (e) =>{
     grossSalary && onClick(e)
     e.preventDefault();
-    grossSalary && postTax();
+    grossSalary && postTax() &&  dispatch(updatePaymentPeriod(yearOfTaxation));
+
     
   };
 
