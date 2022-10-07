@@ -1,14 +1,14 @@
 import {  configureStore} from "@reduxjs/toolkit";
-import taxResultSlice from "../components/features/resultSlice";
+import taxResultReducer from "../components/features/resultSlice";
 
 
 
 export const store = configureStore({
     reducer:{
-        reducer: taxResultSlice,
+        resulting: taxResultReducer,
        
     }
-})
+});
 
 
 // A slice is a collection of reducer logic and actions for a single feature

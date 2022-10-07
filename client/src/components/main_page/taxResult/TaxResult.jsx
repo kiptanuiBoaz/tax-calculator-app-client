@@ -5,14 +5,17 @@ import React from 'react';
 
 export const TaxResult = () => {
     const taxResult = useSelector((state)=>state.resulting.taxResult);
-   
+    const year = useSelector((state)=>state.resulting.taxYear);
+    console.log(year);
+
     
-    const {grossSalary,PAYE,netPay,taxYear,taxableIncome,contributionBenefit,insuranceRelief,personalRelief,totalTax} =  taxResult;
-    console.log(taxYear);
+    const {grossSalary,PAYE,netPay,taxableIncome,contributionBenefit,insuranceRelief,personalRelief,totalTax} =  taxResult;
   return (
     
     <div className="taxResult">
-        <p>This is the tax breakdown for the year {taxYear}</p>
+
+        <p>{`This is the tax breakdown for the year ${year}`}</p>
+
         <div className="grossSalary tab">
             <div className="grossLeft">
                 <p className="grossTitle">Gross Salary</p>

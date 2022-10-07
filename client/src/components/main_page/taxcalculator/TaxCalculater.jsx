@@ -5,7 +5,8 @@ import { FieldInput } from "./FieldInput";
 import { RadioInput } from "./RadioInput"
 import "./taxCalculatorStyle/style.css";
 import axios from "axios";
-import {updateTaxResult} from "../../features/resultSlice";
+import {updateTaxResult,updateTaxYear} from "../../features/resultSlice";
+import { current } from '@reduxjs/toolkit';
 
 
 export const TaxCalculator = ({onClick}) => {
@@ -14,7 +15,8 @@ export const TaxCalculator = ({onClick}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [taxError, setTaxError] = useState("");
   const [grossSalary,setGrossSalary]=useState(0)
-  const [taxYear,setTaxYear]=useState(0)
+  const [taxYear,setTaxYear]=useState();
+  const [taxResult,setTaxResult]=useState(0)
   const [paymentPeriod,setpaymentPeriod]=useState("")
   const [contributionBenefit,setcontributionBenefit]=useState(0)
   const [mortageInterest,setmortageInterest]=useState(0)
@@ -30,6 +32,7 @@ export const TaxCalculator = ({onClick}) => {
         // const url = "http://localhost:5000/api/payeCalculator";
 
     try {
+
       const payLoad = {grossSalary,paymentPeriod,contributionBenefit,mortageInterest,insuranceRelief,disability};
 
       const res = await axios({
@@ -41,7 +44,8 @@ export const TaxCalculator = ({onClick}) => {
       dispatch(updateTaxResult(res.data));
       console.log(res.data)
       
-    } catch (error) {
+    } 
+    catch (error) {
      
       setTaxError(error)
       console.log(taxError)
@@ -68,8 +72,20 @@ export const TaxCalculator = ({onClick}) => {
           className="yearofTaxation"
           text="Year of Taxation"
           type="year"
-          name="yearOfTaxation"
-          onChange={ e => dispatch(updateTaxResult((parseInt(e.target.value))))}
+          name="year"
+          onChange={ (e) => {
+            const {value,name} = e.target;
+
+            setTaxYear( (current) =>{ 
+              return{ 
+                ...current,
+                [name]: parseInt(value) || 2000
+              }}
+            )
+
+            dispatch(updateTaxYear(taxYear));
+
+          }}
         />
 
         <Dropdown  onChange = { e =>  setpaymentPeriod(e.target.value)} />

@@ -10,19 +10,24 @@ const initialState = {
         insuranceRelief:0,
         personalRelief:0,
         totalTax:0,
-        taxYear:2000,
+    },
+
+    taxYear:{
+        year:2000,
+
     }
 }
 export const taxResultSlice = createSlice({
     name: "resulting",
     initialState,
     reducers:{
-        updateTaxResult:(state,action)=> { state.taxResult = action.payload}
+        updateTaxResult:(state,action)=> { state.taxResult = action.payload},
+        updateTaxYear:(state,action)=> { state.taxYear = action.payload},
     },
 
 })
 
-export const {updateTaxResult} = taxResultSlice.actions;
+export const {updateTaxResult,updateTaxYear} = taxResultSlice.actions;
 export default taxResultSlice.reducer;
 
 // Natujenge2022#OYF
