@@ -5,8 +5,7 @@ import { FieldInput } from "./FieldInput";
 import { RadioInput } from "./RadioInput"
 import "./taxCalculatorStyle/style.css";
 import axios from "axios";
-import {updateTaxResult,updateTaxYear} from "../../features/resultSlice";
-import { current } from '@reduxjs/toolkit';
+import {updateTaxResult,updateTaxYear,updateBoth} from "../../features/resultSlice";
 
 
 export const TaxCalculator = ({onClick}) => {
@@ -41,7 +40,17 @@ export const TaxCalculator = ({onClick}) => {
         data: payLoad,
       })
       setIsLoading(false);
-      dispatch(updateTaxResult(res.data));
+
+      setTaxResult(res.data);
+      
+      // setTaxResult((prev)=>{ return {...prev, taxYear}})
+      const temp = Object.assign({},res.data,{year:taxYear})
+      console.log(temp);
+      
+       dispatch(updateBoth(temp));
+      
+      // dispatch(updateTaxYear(taxYear));
+
       console.log(res.data)
       
     } 
@@ -74,18 +83,12 @@ export const TaxCalculator = ({onClick}) => {
           type="year"
           name="year"
           onChange={ (e) => {
-            const {value,name} = e.target;
+            setTaxYear( parseInt(e.target.value) || 2000 )
+            console.log(taxYear);
 
-            setTaxYear( (current) =>{ 
-              return{ 
-                ...current,
-                [name]: parseInt(value) || 2000
-              }}
-            )
-
-            dispatch(updateTaxYear(taxYear));
-
-          }}
+          }
+          
+          }
         />
 
         <Dropdown  onChange = { e =>  setpaymentPeriod(e.target.value)} />
