@@ -1,0 +1,43 @@
+.team {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 6rem;
+  width: 80%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  align-content: center;
+  margin-top: 2rem;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  text-align: center;
+  font-weight: 600;
+}
+.profile img {
+  border-radius: 50%;
+  height: 12rem;
+  width: 12rem;
+}
+.profile a {
+  text-align: center;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 785px) {
+  .team {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* Medium devices (landscape tablets, 768px and up) */
+/* Large devices (laptops/desktops, 992px and up) */
+/* Extra large devices (large laptops and desktops, 1200px and up) *//*# sourceMappingURL=style.css.map */
