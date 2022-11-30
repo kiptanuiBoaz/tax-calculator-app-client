@@ -4,6 +4,8 @@ router.post('/payeCalculator',async(req,res)=>{
         //   let contribution=
      try {
           let {grossSalary,paymentPeriod,contributionBenefit,mortageInterest,insuranceRelief,disability}=req.body;
+          const {log} = console;
+          log(req.body)
           if(!grossSalary) return res.status(404).json({message:"Please set your gross salary"});
           if(!paymentPeriod) return res.status(404).json({message:"Is it a monthly payment"});
         

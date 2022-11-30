@@ -5,17 +5,17 @@ import { FieldInput } from "./FieldInput";
 import { RadioInput } from "./RadioInput"
 import "./taxCalculatorStyle/style.css";
 import axios from "axios";
-import {updateTaxResult,updateTaxYear,updateBoth} from "../../features/resultSlice";
+import {updateBoth} from "../../features/resultSlice";
 
 
 export const TaxCalculator = ({onClick}) => {
 
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
-  const [taxError, setTaxError] = useState("");
+  const [ , setTaxError] = useState("");
   const [grossSalary,setGrossSalary]=useState(0)
   const [taxYear,setTaxYear]=useState();
-  const [taxResult,setTaxResult]=useState(0)
+  const [ ,setTaxResult]=useState(0)
   const [paymentPeriod,setpaymentPeriod]=useState("")
   const [contributionBenefit,setcontributionBenefit]=useState(0)
   const [mortageInterest,setmortageInterest]=useState(0)
@@ -40,30 +40,28 @@ export const TaxCalculator = ({onClick}) => {
         data: payLoad,
       })
       setIsLoading(false);
-
+      console.log(res)
       setTaxResult(res.data);
       
-      // setTaxResult((prev)=>{ return {...prev, taxYear}})
+      // add taxyear to global state update object
       const temp = Object.assign({},res.data,{year:taxYear})
-      console.log(temp);
+      // console.log(temp);
       
        dispatch(updateBoth(temp));
       
       // dispatch(updateTaxYear(taxYear));
 
-      console.log(res.data)
       
     } 
     catch (error) {
      
       setTaxError(error)
-      console.log(taxError)
     }
 
     
   };
 
-
+//submit formdata to server
   const formSubmit = (e) =>{
     grossSalary && onClick(e)
     e.preventDefault();
@@ -84,7 +82,7 @@ export const TaxCalculator = ({onClick}) => {
           name="year"
           onChange={ (e) => {
             setTaxYear( parseInt(e.target.value) || 2000 )
-            console.log(taxYear);
+            // console.log(taxYear);
 
           }
           
@@ -107,7 +105,7 @@ export const TaxCalculator = ({onClick}) => {
         />
 
         <RadioInput
-          text=" Do you have any disability exception certificate?"
+          text=" Do you have any disability certificate?"
           name="disability"
           onChange={e =>{ (e.target.value === "true") && setDisability(true)}}
           option1 = "Yes"
@@ -132,7 +130,9 @@ export const TaxCalculator = ({onClick}) => {
           option2 = "No"
         /> 
   
-        <button name="result"  className ="selectBtn" onClick={(e)=>formSubmit(e)}>{ isLoading ? "Calculating..." : "Calculate"} </button>
+        <button 
+        // disabled={grossSalary!==0 || paymentPeriod !==0 || contributionBenefit !==0  } 
+        name="result"  className ="selectBtn" onClick={(e)=>formSubmit(e)}>{ isLoading ? "Calculating..." : "Calculate"} </button>
       </form>
 
       

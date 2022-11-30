@@ -1,19 +1,19 @@
 .label-bill{
     display: grid;
-    gap: 20px;
+    gap: 15px;
     margin-inline-start: 2rem;
-    margin-inline-end: 2rem;
+    margin-inline-end: 1rem;
     font-family: Inter;
     font-size: 20px;
     // font-weight: 00;
-    line-height: 22px;
+    line-height: 18px;
     letter-spacing: 0em;
     // width:100%;
     
     .bill{
         display: flex;
         justify-content: space-between;
-        min-width: 36rem;
+        min-width: 25rem;
         position: relative;
         
                 input {

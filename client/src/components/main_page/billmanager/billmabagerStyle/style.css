@@ -1,19 +1,19 @@
 .label-bill {
   display: grid;
-  gap: 20px;
+  gap: 15px;
   -webkit-margin-start: 2rem;
           margin-inline-start: 2rem;
-  -webkit-margin-end: 2rem;
-          margin-inline-end: 2rem;
+  -webkit-margin-end: 1rem;
+          margin-inline-end: 1rem;
   font-family: Inter;
   font-size: 20px;
-  line-height: 22px;
+  line-height: 18px;
   letter-spacing: 0em;
 }
 .label-bill .bill {
   display: flex;
   justify-content: space-between;
-  min-width: 36rem;
+  min-width: 25rem;
   position: relative;
 }
 .label-bill .bill input {

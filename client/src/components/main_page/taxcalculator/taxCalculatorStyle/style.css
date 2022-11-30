@@ -1,12 +1,12 @@
 .tax-form {
   display: grid;
-  gap: 20px;
+  gap: 15px;
   -webkit-margin-start: 2rem;
           margin-inline-start: 2rem;
   -webkit-margin-end: 2rem;
           margin-inline-end: 2rem;
   font-family: Inter;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 22px;
   letter-spacing: 0em;
 }
@@ -32,6 +32,7 @@
 .tax-form .label-radio {
   display: flex;
   justify-content: space-between;
+  place-items: center;
   gap: 20px;
 }
 .tax-form .label-radio input {
@@ -40,7 +41,7 @@
   min-height: 24px;
   font-size: 18px;
   padding: 4px;
-  margin-top: 20PX;
+  margin-top: 20px;
 }
 .tax-form .label-radio input:focus {
   outline-style: groove;
@@ -57,23 +58,19 @@
   z-index: 10;
   font-size: 20px;
 }
-.tax-form .calculateBtn {
-  display: flex;
-  justify-content: center;
-}
-.tax-form .calculateBtn .selectBtn, .tax-form .calculateBtn .selectBtnActive {
-  background-color: #1cb484;
-  border: none;
-  border-radius: 5px;
-  font-size: 20px;
-  width: -webkit-min-content;
-  width: -moz-min-content;
-  width: min-content;
-  padding: 4px 24px;
-  color: #ffffff;
-}
-.tax-form .calculateBtn .selectBtn {
+.tax-form .selectBtn {
   border: 2px solid #1cb484;
-  color: #1cb484;
-  background-color: #ffffff;
+  position: relative;
+  background-color: #1cb484;
+  width: 100%;
+  color: white;
+  padding: 8px;
+  border: none;
+  font-size: 24px;
+  font-weight: 500;
+  border-bottom: 1px solid #1CB484;
+  top: 10px;
+}
+.tax-form .selectBtn:disabled {
+  background-color: darkgrey;
 }/*# sourceMappingURL=style.css.map */

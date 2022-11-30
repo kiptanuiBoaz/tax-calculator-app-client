@@ -1,35 +1,35 @@
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding-right: 50px;
   padding-top: 12px;
   padding-bottom: 12px;
-  background-color: #F5FAF8;
+  background-color: #f5faf8;
   position: fixed;
+  width: 100%;
   top: 0;
   right: 0;
   left: 0;
-}
-.navbar .navLeft {
-  -webkit-margin-start: 30rem;
-          margin-inline-start: 30rem;
-}
-.navbar .navRight {
   display: flex;
-  gap: 10rem;
+  gap: 0rem;
   -webkit-margin-end: 30rem;
           margin-inline-end: 30rem;
   font-size: 20px;
   font-weight: 600;
 }
-.navbar .navRight a {
+@media screen and (max-width: 850px) {
+  .navbar {
+    gap: 2rem;
+  }
+}
+.navbar a {
   text-decoration: none;
   color: black;
 }
-.navbar .navRight a:visited {
+.navbar a:visited {
   color: initial;
 }
-.navbar .navRight a:first-child {
-  color: #1CB484;
+.navbar a:first-child {
+  color: #1cb484;
 }/*# sourceMappingURL=style.css.map */

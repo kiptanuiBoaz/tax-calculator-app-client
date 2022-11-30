@@ -9,7 +9,7 @@ const paye=require('./routes/paye')
 const expenses=require('./routes/expenses')
 
 app.use('/api',paye);
-app.use('/api',expenses);
+// app.use('/api',expenses);
 
 
 const PORT = process.env.PORT || 5000;
