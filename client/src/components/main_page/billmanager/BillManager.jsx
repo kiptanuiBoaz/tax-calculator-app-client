@@ -50,7 +50,7 @@ export const BillManager = () => {
   const handleClick= () =>{setClicked(true); };
 
   const addNewBill = (event)=> {
-    const {name, value} = event.target;
+    const {name, value} = event.target; 
 
     setNewBill((prevBill) =>{
       return{
