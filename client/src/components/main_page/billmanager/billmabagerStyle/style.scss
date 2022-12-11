@@ -91,8 +91,21 @@
             border: none;
             font-size: 18px;
             color: #fff;
+            &:disabled{
+                background-color: grey;
+            }
         }
     }
+
+    .error {
+        color: #d8000c;
+        background-color: #ffbaba;
+        background-image: url("https://i.imgur.com/GnyDvKN.png");
+
+        background-repeat: no-repeat;
+        padding-left: 40px;
+        line-height: 30px;
+      }
 
     .balance{
         text-align: right;

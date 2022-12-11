@@ -1,59 +1,86 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./billmabagerStyle/style.css";
 import { useSelector } from "react-redux";
 
-
 export const BillManager = () => {
-  const [isShown, setIsShown] = useState()
+  const [isShown, setIsShown] = useState();
 
-  const [clicked,setClicked] = useState(false);
+  const [clicked, setClicked] = useState(false);
+
+  
 
   const [newBill, setNewBill] = useState({
-    billName:""
-    
+    billName: ""
   });
 
-  const [bills, setBills] = useState([{billName:"Rent",billValue:Number,},{billName:"Entertainment",billValue:Number,},{billName:"Food",billValue:Number,} ,{billName:"Shopping",billValue:Number,}]);
+  //initialise the bills array
+  const [bills, setBills] = useState([
+    { billName: "Rent", billValue: Number },
+    { billName: "Entertainment", billValue: Number },
+    { billName: "Food", billValue: Number },
+    { billName: "Shopping", billValue: Number }
+  ]);
+
   const [balance, setBalance] = useState(0);
-  const [computeValues, setComputeValues]= useState([]);
-  
-  const pushNewBill = (event) =>{
+
+  //initialise array with values used in calculating the total bill
+  const [computeValues, setComputeValues] = useState([]);
+
+  //bill currently being added
+  const [beingAdded, setBeingAdded] = useState();
+
+  const pushNewBill = event => {
     event.preventDefault();
-    (newBill.billName ) && setBills(current => [...current, newBill])
-    setNewBill({billName:""});
+
+     setBills(current => [...current, newBill]);
+
+    setNewBill({ billName: "" });
+
     setClicked(false);
-  }
-
-  const netPay = useSelector((state)=>state.resulting.taxResult.netPay);
-  
-
-  
-
-  const pushDefaultBill = (event)=>{
-    const {name, value}= event.target;
     
+  };
+
+  //fetching the value of the netpay from redux store
+  const netPay = useSelector(state => state.resulting.taxResult.netPay);
+
+  const pushDefaultBill = event => {
+    const { name, value } = event.target;
+
     setComputeValues(prev => {
-        return  {...prev, [name]: parseInt(value)  || 0}
-      }
-    );
-      
+      return { ...prev, [name]: parseInt(value) || 0 };
+    });
+
     calculateBalance();
   };
-  // console.log(computeValues)
-  
-  const calculateBalance = ()=>{
-    setBalance(netPay - (Object.values(computeValues).reduce((c,d)=>c+d,0)))
+
+  const calculateBalance = () => {
+    //reduce function to accumulate the total value of bills for every array element
+    setBalance(
+      //generate an array of values and find  the sum of the array elements
+      netPay - Object.values(computeValues).reduce((c, d) => c + d, 0)
+    );
   };
 
-   
 
-  const handleClick= () =>{setClicked(true); };
 
-  const addNewBill = (event)=> {
-    const {name, value} = event.target; 
+  const handleClick = (event) => {
+    //add new bill
+    if (clicked) {
+      pushNewBill(event);
+      setClicked(false);
+      //display the newbill input field
+    } else {
+      setClicked(true);
+    }
+  };
 
-    setNewBill((prevBill) =>{
-      return{
+  const addNewBill = (event) => {
+    const { name, value } = event.target;
+    //set the name to be displayed in the remove button
+    setBeingAdded(value);
+    //update the bills array
+    setNewBill((prevBill) => {
+      return {
         ...prevBill,
         [name]: value
       }
@@ -61,65 +88,77 @@ export const BillManager = () => {
 
   };
 
-  const removeBill = (a,event) => {
+  const removeBill = (a, event) => {
     setClicked(false)
+    //remove the bill whose remove button has been clicked from the display array
 
-    setBills((prevBill) =>{
-      return prevBill.filter((bill, i)=>{
+    setBills((prevBill) => {
+      return prevBill.filter((bill, i) => {
         return i !== a
       });
     })
 
-    setComputeValues(prev =>( 
-      {...prev, [event.target.name]: 0}
-    ))
-  };
-
-  
+    //set the removed bill value to zero in the compute values
+    setComputeValues(prev => (
+      { ...prev, [event.target.name]: 0 }
+    ));
+  }
 
   return (
     <div className="label-bill">
-        {bills.map((bill,a,bills)=>{
-          
-          return(
+      {bills.map((bill, a, bills) => {
 
-            <div key={a} onMouseEnter={() => (a > 3) && setIsShown(a)} onMouseLeave={() => setIsShown("")} className="label-bill" >
+        return (
 
-              <div className="bill" >
+          <div key={bill.billName} onMouseEnter={() => (a > 3) && setIsShown(a)} onMouseLeave={() => setIsShown("")} className="label-bill" >
 
-                <label>{bill.billName}</label> 
-                <div className="remo">
-                  <input 
-                    autoComplete="off"
-                    className="noscroll"
-                    onChange={(event)=>  pushDefaultBill(event)}
-                    type="number" name={bill.billName}
-                    onMouseLeave={(event)=>pushDefaultBill(event)}
-                  />
-                  { isShown === a && <button name={bill.billName} className="removeBill" onClick={(event)=>removeBill(a,event)} >{`Remove ${bill.billName}`.toLocaleLowerCase()} </button> }
-                </div>
+            <div className="bill" >
 
+              <label>{bill.billName}</label>
+              <div className="remo">
+                <input
+                  autoComplete="off"
+                  className="noscroll"
+                  onChange={(event) => pushDefaultBill(event)}
+                  type="number" name={bill.billName}
+                  onMouseLeave={(event) => pushDefaultBill(event)}
+                />
+                {isShown === a && <button name={bill.billName} className="removeBill" onClick={(event) => removeBill(a, event)} >{`Remove ${bill.billName}`.toLocaleLowerCase()} </button>}
               </div>
-            
-            </div>
-          )
-        })}
 
-        {clicked &&
-          <div className="secodary-input" >
-            <input onChange={addNewBill} type="text" name="billName" value={newBill.billName} />
-            <button onClick={pushNewBill}>+</button>
-          </div> 
-        }
-        
-        <div className="billButtons">
-          <button onClick={ (event)=>{event.preventDefault(); handleClick()}}>Add bill</button>
+            </div>
+
+          </div>
+        )
+      })}
+
+      {/* //adding a new bill(input field that apears after the add newBill is cliked) */}
+      {clicked &&
+        <div className="secodary-input" >
+          <input onChange={addNewBill} type="text" name="billName" value={newBill.billName} />
+          {/* <button onClick={pushNewBill}>+</button> */}
         </div>
-      
-        <p className="balance">Net Pay: {` KES ${ netPay } `}</p>
-      
-        <p className="balance">Balance:<span  style={{color: netPay * 0.2 > balance  ? "red" : "#1CB484" }}>{` KES ${ balance } `}</span> </p> 
+      }
+
+      <div className="billButtons">
+        <button
+          name="addBill"
+          disabled={ clicked && !newBill.billName }
+          onClick={
+            (event) => {
+              event.preventDefault();
+              // if newbill is bieng added push new bill otherwise displayinput fields
+              handleClick(event)
+            }
+          }>Add {clicked ? beingAdded : "bill"} </button>
+         
+      </div>
+      {(balance < 0) &&  <p className="error">Balace cannot be less than zero! </p>}
+
+      <p className="balance">Net Pay: {` KES ${netPay} `}</p>
+
+      <p className="balance">Balance:<span style={{ color: netPay * 0.2 > balance ? "red" : "#1CB484" }}>{` KES ${balance} `}</span> </p>
     </div>
-    
+
   )
-}
+};
