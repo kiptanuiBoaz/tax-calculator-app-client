@@ -7,7 +7,7 @@ export const BillManager = () => {
 
   const [clicked, setClicked] = useState(false);
 
-  
+  const [billAlreadyExists, setBillAlreadyExists] = useState(null);
 
   const [newBill, setNewBill] = useState({
     billName: ""
@@ -31,12 +31,12 @@ export const BillManager = () => {
 
   const pushNewBill = event => {
     event.preventDefault();
+  
 
-     setBills(current => [...current, newBill]);
-
+      setBills(current => [...current, newBill]);  
+      setClicked(false);
+    
     setNewBill({ billName: "" });
-
-    setClicked(false);
     
   };
 
@@ -68,6 +68,8 @@ export const BillManager = () => {
     if (clicked) {
       pushNewBill(event);
       setClicked(false);
+      //resetting bieng added
+      setBeingAdded(null)
       //display the newbill input field
     } else {
       setClicked(true);
@@ -75,16 +77,26 @@ export const BillManager = () => {
   };
 
   const addNewBill = (event) => {
+
+    //destructuring the event object
     const { name, value } = event.target;
-    //set the name to be displayed in the remove button
-    setBeingAdded(value);
-    //update the bills array
-    setNewBill((prevBill) => {
-      return {
-        ...prevBill,
-        [name]: value
-      }
-    });
+
+    //checking if a bill with the same name already exists
+    if(bills.some((obj) => obj.billName === value)){
+      setBillAlreadyExists(value);
+      console.log(billAlreadyExists)
+    }else{
+      setBillAlreadyExists(null);
+      //set the name to be displayed in the remove button
+      setBeingAdded(value);
+      //update the bills array
+      setNewBill((prevBill) => {
+        return {
+          ...prevBill,
+          [name]: value
+        }
+      });
+    }
 
   };
 
@@ -136,6 +148,7 @@ export const BillManager = () => {
       {clicked &&
         <div className="secodary-input" >
           <input onChange={addNewBill} type="text" name="billName" value={newBill.billName} />
+          {billAlreadyExists && <p className="exist-error">{`'${billAlreadyExists}' already exists`}</p>}
           {/* <button onClick={pushNewBill}>+</button> */}
         </div>
       }
@@ -150,9 +163,12 @@ export const BillManager = () => {
               // if newbill is bieng added push new bill otherwise displayinput fields
               handleClick(event)
             }
-          }>Add {clicked ? beingAdded : "bill"} </button>
+          }
+          // display bill in default and the billname bieng added conditionally
+          >Add {clicked ? beingAdded : "bill"} </button>
          
       </div>
+      {/* display if balance is a negative value */}
       {(balance < 0) &&  <p className="error">Balace cannot be less than zero! </p>}
 
       <p className="balance">Net Pay: {` KES ${netPay} `}</p>
