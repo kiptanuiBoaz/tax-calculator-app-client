@@ -28,7 +28,7 @@ export const BillManager = () => {
   const [computeValues, setComputeValues] = useState([]);
 
   //bill currently being added
-  const [beingAdded, setBeingAdded] = useState();
+  const [beingAdded, setBeingAdded] = useState("");
 
   const pushNewBill = event => {
     event.preventDefault();
@@ -166,10 +166,7 @@ export const BillManager = () => {
             }
           }
           // display bill in default and the billname bieng added conditionally
-          >Add {clicked ?
-          beingAdded
-          /* `${beingAdded.slice(0,12) + beingAdded.length > 13 && "..."}` */
-            : "bill"} </button>
+          >Add {clicked ? `${beingAdded.slice(0,12) +  beingAdded.length > 13 && "..."}` : "bill"} </button>
          
       </div>
       {/* display if balance is a negative value */}
