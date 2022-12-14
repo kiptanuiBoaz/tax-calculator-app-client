@@ -6,6 +6,7 @@ export const BillManager = () => {
   const [isShown, setIsShown] = useState();
 
   const [clicked, setClicked] = useState(false);
+  
 
   const [billAlreadyExists, setBillAlreadyExists] = useState(null);
 
@@ -118,24 +119,24 @@ export const BillManager = () => {
 
   return (
     <div className="label-bill">
-      {bills.map((bill, a, bills) => {
+      {bills.map(({billName}, a, bills) => {
 
         return (
 
-          <div key={bill.billName} onMouseEnter={() => (a > 3) && setIsShown(a)} onMouseLeave={() => setIsShown("")} className="label-bill" >
+          <div key={billName} onMouseEnter={() => (a > 3) && setIsShown(a)} onMouseLeave={() => setIsShown("")} className="label-bill" >
 
             <div className="bill" >
 
-              <label>{bill.billName}</label>
+              <label>{`${billName.slice(0,12)}`} {billName.length > 13 && "..."}</label>
               <div className="remo">
                 <input
                   autoComplete="off"
                   className="noscroll"
                   onChange={(event) => pushDefaultBill(event)}
-                  type="number" name={bill.billName}
+                  type="number" name={billName}
                   onMouseLeave={(event) => pushDefaultBill(event)}
                 />
-                {isShown === a && <button name={bill.billName} className="removeBill" onClick={(event) => removeBill(a, event)} >{`Remove ${bill.billName}`.toLocaleLowerCase()} </button>}
+                {isShown === a && <button name={billName} className="removeBill" onClick={(event) => removeBill(a, event)} >{`Remove ${billName.slice(0,4)} ${billName.length > 4 && "..."}`} </button>}
               </div>
 
             </div>
@@ -165,7 +166,10 @@ export const BillManager = () => {
             }
           }
           // display bill in default and the billname bieng added conditionally
-          >Add {clicked ? beingAdded : "bill"} </button>
+          >Add {clicked ?
+          beingAdded
+          /* `${beingAdded.slice(0,12) + beingAdded.length > 13 && "..."}` */
+            : "bill"} </button>
          
       </div>
       {/* display if balance is a negative value */}
