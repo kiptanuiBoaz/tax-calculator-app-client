@@ -89,7 +89,7 @@ export const BillManager = () => {
     }else{
       setBillAlreadyExists(null);
       //set the name to be displayed in the remove button
-      setBeingAdded(value);
+      setBeingAdded((value.length < 13 ) ? value : value.slice(0,12) + "...");
       //update the bills array
       setNewBill((prevBill) => {
         return {
@@ -136,7 +136,7 @@ export const BillManager = () => {
                   type="number" name={billName}
                   onMouseLeave={(event) => pushDefaultBill(event)}
                 />
-                {isShown === a && <button name={billName} className="removeBill" onClick={(event) => removeBill(a, event)} >{`Remove ${billName.slice(0,4)} ${billName.length > 4 && "..."}`} </button>}
+                {isShown === a && <button name={billName} className="removeBill" onClick={(event) => removeBill(a, event)} >{`Remove ${billName.slice(0,4)}` }{billName.length > 4 && "..."} </button>}
               </div>
 
             </div>
@@ -166,7 +166,7 @@ export const BillManager = () => {
             }
           }
           // display bill in default and the billname bieng added conditionally
-          >Add {clicked ? `${beingAdded.slice(0,12) +  beingAdded.length > 13 && "..."}` : "bill"} </button>
+          >Add {clicked ? beingAdded : "bill"}   </button>
          
       </div>
       {/* display if balance is a negative value */}
