@@ -31,9 +31,8 @@ export const BillManager = () => {
   const [beingAdded, setBeingAdded] = useState("");
 
   const pushNewBill = event => {
+    
     event.preventDefault();
-  
-
       setBills(current => [...current, newBill]);  
       setClicked(false);
     
