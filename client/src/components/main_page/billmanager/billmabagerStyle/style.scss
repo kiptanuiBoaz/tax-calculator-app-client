@@ -1,123 +1,133 @@
-.label-bill{
-    display: grid;
-    gap: 15px;
-    margin-inline-start: 2rem;
+.label-bill {
+  display: grid;
+  gap: 15px;
+  margin-inline-start: 2rem;
+  margin-inline-end: 1rem;
+  font-family: Inter;
+  font-size: 20px;
+  // font-weight: 00;
+  line-height: 18px;
+  letter-spacing: 0em;
+
+  @media screen and (max-width: 480px) {
+    margin-inline-start: 1rem;
     margin-inline-end: 1rem;
-    font-family: Inter;
-    font-size: 20px;
-    // font-weight: 00;
-    line-height: 18px;
-    letter-spacing: 0em;
-    // width:100%;
+  }
+
+  .bill {
+    display: flex;
+    justify-content: space-between;
+    min-width: 25rem;
+    position: relative;
+
     @media screen and (max-width: 480px) {
-        margin-inline-start: 5rem;
-        margin-inline-end: 1rem;
+      min-width: 12rem;
     }
-    
-    .bill{
+
+    input {
+      border: 1px solid #1cb484;
+      border-radius: 5px;
+      min-height: 24px;
+      font-size: 18px;
+      padding: 4px;
+
+      @media screen and (max-width: 480px) {
         display: flex;
-        justify-content: space-between;
-        min-width: 25rem;
-        position: relative;
-        
-                input {
-                    border: 1px solid #1cb484;
-                    border-radius: 5px;
-                    min-height: 24px;
-                    font-size: 18px;
-                    padding: 4px;
-                }
-        
-                input:focus {
-                    outline-style: groove;
-                    outline-width: 2px;
-                    outline-color: #1cb484;
-                }
-            
-        .removeBill{
-            // height: 30px;
-            // right:320px;
-            font-size: 14px;
-            padding: .3rem 1em;
-             border-radius:5px;
-             position:sticky;
-             color:white;
-             background-color:rgb(209, 117, 117);
-             border: none;
-             position: absolute;
-             top: 4px;
-             right: 12px;
-        }
-        .remo{
-            display: grid;
-            gap: 4px;
-        }
+    margin-left: auto;;
+        width: 70%;
+      }
     }
 
-    .secodary-input{
-        display: flex;
-        justify-content: space-between;
-        input {
-                border: 1px solid #1cb484;
-                border-radius: 5px;
-                min-height: 24px;
-                font-size: 18px;
-                padding: 4px;
-                margin-inline-start: 2rem;
-            }
-        
-            input:focus {
-                outline-style: groove;
-                outline-width: 2px;
-                outline-color: #1cb484;
-            }
-            button{
-                background-color: #1cb484;
-                border: none;
-                min-width: 10rem;
-                margin-inline-start: 2rem;
-                    margin-inline-end: 2rem;
-                    border-radius: 5px;
-            }
-
-            .exist-error{
-                @extend .error;
-            }
+    input:focus {
+      outline-style: groove;
+      outline-width: 2px;
+      outline-color: #1cb484;
     }
 
-    .billButtons{
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        border-bottom: 1px solid #1cb484;
-        padding-bottom: 20px;
+    .removeBill {
+      // height: 30px;
+      // right:320px;
+      font-size: 14px;
+      padding: 0.3rem 1em;
+      border-radius: 5px;
+      position: sticky;
+      color: white;
+      background-color: rgb(209, 117, 117);
+      border: none;
+      position: absolute;
+      top: 4px;
+      right: 12px;
+    }
+    .remo {
+      display: grid;
+      gap: 4px;
+    }
+  }
 
-        button{
-            background-color: #1cb484;
-            border-radius: 5px;
-            padding: 4px 24px;
-            border: none;
-            font-size: 18px;
-            color: #fff;
-            &:disabled{
-                background-color: grey;
-            }
-        }
+  .secodary-input {
+    display: flex;
+    justify-content: space-between;
+    input {
+      border: 1px solid #1cb484;
+      border-radius: 5px;
+      min-height: 24px;
+      font-size: 18px;
+      padding: 4px;
+      margin-inline-start: 2rem;
     }
 
-    .error {
-        color: #d8000c;
-        background-color: #ffbaba;
-        background-image: url("https://i.imgur.com/GnyDvKN.png");
-
-        background-repeat: no-repeat;
-        padding-left: 40px;
-        line-height: 30px;
+    input:focus {
+      outline-style: groove;
+      outline-width: 2px;
+      outline-color: #1cb484;
+    }
+    button {
+      background-color: #1cb484;
+      border: none;
+      min-width: 10rem;
+      margin-inline-start: 2rem;
+      margin-inline-end: 2rem;
+      border-radius: 5px;
     }
 
-    .balance{
-        text-align: right;
-        margin-inline-end: 2rem;
-        font-weight: 600;
+    .exist-error {
+      @extend .error;
     }
+  }
+
+  .billButtons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    border-bottom: 1px solid #1cb484;
+    padding-bottom: 20px;
+
+    button {
+      background-color: #1cb484;
+      border-radius: 5px;
+      padding: 4px 24px;
+      border: none;
+      font-size: 18px;
+      color: #fff;
+      &:disabled {
+        background-color: grey;
+      }
+    }
+  }
+
+  .error {
+    color: #d8000c;
+    background-color: #ffbaba;
+    background-image: url("https://i.imgur.com/GnyDvKN.png");
+
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    line-height: 30px;
+  }
+
+  .balance {
+    text-align: right;
+    margin-inline-end: 2rem;
+    font-weight: 600;
+  }
 }

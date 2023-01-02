@@ -27,7 +27,7 @@ return (
 <div className="taxResult">
 <p>{`This is the tax breakdown for the year ${year}`}</p>
 
-Copy code
+ 
   <div className="grossSalary tab">
     <div className="grossLeft">
       <p className="grossTitle">Gross Salary</p>

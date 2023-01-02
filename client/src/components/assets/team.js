@@ -3,13 +3,13 @@ export const team = [
       id: 1,
       name: "Kiptanui Boaz",
      link:"https://github.com/kiptanuiBoaz" ,
-     img:"https://avatars.githubusercontent.com/u/37267714?v=4",
+     img:"https://images.unsplash.com/photo-1536697246787-1f7ae568d89a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YXN0cm9uYXV0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60",
     },
 
     {id: 2,
       name: "Elvis Mariga",
     link:"https://github.com/elvmariga" ,
-    img:"https://pps.whatsapp.net/v/t61.24694-24/297035077_587339049648738_4746086535606396063_n.jpg?ccb=11-4&oh=01_AVx7i7TlWzdTGcNBtEmghYMeLHYRkSYy6iRtdDYJdZBs4g&oe=6342102F",
+    img:"https://avatars.githubusercontent.com/u/37267714?v=4",
     },
 
     {id: 3,

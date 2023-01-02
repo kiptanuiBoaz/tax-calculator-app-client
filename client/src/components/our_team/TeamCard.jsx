@@ -9,8 +9,8 @@ export const TeamCard = ({name,id,img,link,i}) => {
 
     <div className="profile" key={id}   onMouseEnter={ ()=>setHover(i)} onMouseLeave={()=>setHover(15)}>
       <img  src={img} alt= {`${name} profile`} />
-      <p>{name}</p>
-      { hover === i &&  <a  href={link} rel="noreferrer"  target="_blank"><AiFillGithub/></a> }
+      <p><a  className="gitIcon" href={link} rel="noreferrer"  target="_blank">{name} { hover === i &&   <AiFillGithub/>}</a></p>
+      
        
     </div>
   )

@@ -18,9 +18,17 @@
   font-size: 20px;
   font-weight: 600;
   @media screen and (max-width:850px) {
-    gap:2rem
+    gap:2rem;
+    padding: 0 auto;
+    font-size: 17px;
+    font-weight: 500;
   }
 
+  img{
+    @media screen and (max-width: 480px) {
+      width: 90%;
+    }
+  }
   a {
     text-decoration: none;
     color: black;

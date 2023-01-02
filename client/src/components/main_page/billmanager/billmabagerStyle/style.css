@@ -12,8 +12,8 @@
 }
 @media screen and (max-width: 480px) {
   .label-bill {
-    -webkit-margin-start: 5rem;
-            margin-inline-start: 5rem;
+    -webkit-margin-start: 1rem;
+            margin-inline-start: 1rem;
     -webkit-margin-end: 1rem;
             margin-inline-end: 1rem;
   }
@@ -24,12 +24,24 @@
   min-width: 25rem;
   position: relative;
 }
+@media screen and (max-width: 480px) {
+  .label-bill .bill {
+    min-width: 12rem;
+  }
+}
 .label-bill .bill input {
   border: 1px solid #1cb484;
   border-radius: 5px;
   min-height: 24px;
   font-size: 18px;
   padding: 4px;
+}
+@media screen and (max-width: 480px) {
+  .label-bill .bill input {
+    display: flex;
+    margin-left: auto;
+    width: 70%;
+  }
 }
 .label-bill .bill input:focus {
   outline-style: groove;

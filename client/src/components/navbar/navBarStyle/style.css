@@ -21,6 +21,14 @@
 @media screen and (max-width: 850px) {
   .navbar {
     gap: 2rem;
+    padding: 0 auto;
+    font-size: 17px;
+    font-weight: 500;
+  }
+}
+@media screen and (max-width: 480px) {
+  .navbar img {
+    width: 90%;
   }
 }
 .navbar a {
