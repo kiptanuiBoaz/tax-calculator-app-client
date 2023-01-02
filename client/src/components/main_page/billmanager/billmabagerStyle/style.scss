@@ -9,6 +9,10 @@
     line-height: 18px;
     letter-spacing: 0em;
     // width:100%;
+    @media screen and (max-width: 480px) {
+        margin-inline-start: 5rem;
+        margin-inline-end: 1rem;
+    }
     
     .bill{
         display: flex;

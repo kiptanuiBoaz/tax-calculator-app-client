@@ -10,6 +10,14 @@
   line-height: 18px;
   letter-spacing: 0em;
 }
+@media screen and (max-width: 480px) {
+  .label-bill {
+    -webkit-margin-start: 5rem;
+            margin-inline-start: 5rem;
+    -webkit-margin-end: 1rem;
+            margin-inline-end: 1rem;
+  }
+}
 .label-bill .bill {
   display: flex;
   justify-content: space-between;
