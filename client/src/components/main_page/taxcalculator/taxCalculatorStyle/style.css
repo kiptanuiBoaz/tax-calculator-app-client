@@ -10,6 +10,12 @@
   line-height: 22px;
   letter-spacing: 0em;
 }
+@media screen and (max-width: 480px) {
+  .tax-form {
+    font-size: 14px;
+    gap: 13px;
+  }
+}
 .tax-form .label {
   display: flex;
   justify-content: space-between;
@@ -35,6 +41,11 @@
   place-items: center;
   gap: 20px;
 }
+@media screen and (max-width: 480px) {
+  .tax-form .label-radio {
+    gap: 5px;
+  }
+}
 .tax-form .label-radio input {
   border: 1px solid #1cb484;
   border-radius: 5px;
@@ -42,6 +53,13 @@
   font-size: 18px;
   padding: 4px;
   margin-top: 20px;
+  letter-spacing: 0em;
+}
+@media screen and (max-width: 480px) {
+  .tax-form .label-radio input {
+    font-size: 15px;
+    padding: 4px;
+  }
 }
 .tax-form .label-radio input:focus {
   outline-style: groove;

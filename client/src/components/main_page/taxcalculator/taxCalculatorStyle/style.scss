@@ -8,6 +8,10 @@
   // height: fit-content;
   line-height: 22px;
   letter-spacing: 0em;
+  @media screen and (max-width: 480px) {
+    font-size: 14px;
+    gap: 13px;
+  }
 
   .label {
     display: flex;
@@ -40,6 +44,10 @@
     place-items: center;
     gap: 20px;
 
+    @media screen and (max-width: 480px) {
+      gap: 5px
+    }
+
     input {
       border: 1px solid #1cb484;
       border-radius: 5px;
@@ -47,6 +55,11 @@
       font-size: 18px;
       padding: 4px;
       margin-top: 20px;
+      letter-spacing: 0em;
+      @media screen and (max-width: 480px) {
+        font-size: 15px;
+        padding: 4px;
+      }
     }
 
     input:focus {
@@ -68,26 +81,23 @@
     font-size: 20px;
   }
 
-  
-    
-    .selectBtn {
-      border: 2px solid #1cb484;
-      position: relative;
-      background-color: #1cb484;
-      width: 100%;
-      color: white;
-      padding: 8px;
-      border: none;
-      font-size: 24px;
-      font-weight: 500;
-      border-bottom: 1px solid#1CB484;
-      top: 10px;
+  .selectBtn {
+    border: 2px solid #1cb484;
+    position: relative;
+    background-color: #1cb484;
+    width: 100%;
+    color: white;
+    padding: 8px;
+    border: none;
+    font-size: 24px;
+    font-weight: 500;
+    border-bottom: 1px solid#1CB484;
+    top: 10px;
     //   height: 2rem;
     //   padding-bottom:10px;
 
-      &:disabled{
-        background-color: darkgrey;
-      }
+    &:disabled {
+      background-color: darkgrey;
     }
   }
-
+}
