@@ -36,7 +36,7 @@ export const TaxCalculator = ({onClick}) => {
 
       const res = await axios({
         method: "post",
-        url: "http://localhost:5000/api/payeCalculator",
+        url: "https://tax-calculator-service.onrender.com",
         data: payLoad,
       })
       setIsLoading(false);
