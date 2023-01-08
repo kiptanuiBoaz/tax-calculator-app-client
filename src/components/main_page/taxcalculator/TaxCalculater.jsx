@@ -23,7 +23,7 @@ export const TaxCalculator = ({onClick}) => {
   const [disability,setDisability]=useState(false);
   
 
-  
+
       
   const postTax = async() => {
 
