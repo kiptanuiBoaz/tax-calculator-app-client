@@ -15,16 +15,17 @@ export const TaxCalculator = ({onClick}) => {
   const [ , setTaxError] = useState("");
   const [grossSalary,setGrossSalary]=useState(0)
   const [taxYear,setTaxYear]=useState();
-  const [ ,setTaxResult]=useState(0)
+  const [ taxResult,setTaxResult]=useState()
   const [paymentPeriod,setpaymentPeriod]=useState("")
   const [contributionBenefit,setcontributionBenefit]=useState(0)
   const [mortageInterest,setmortageInterest]=useState(0)
   const [insuranceRelief,setinsuranceRelief]=useState(0)
   const [disability,setDisability]=useState(false);
+ 
   
 
 
-      
+  
   const postTax = async() => {
 
     setIsLoading(true);
@@ -36,12 +37,11 @@ export const TaxCalculator = ({onClick}) => {
 
       const res = await axios({
         method: "post",
-        url: "https://tax-calculator-service.onrender.com",
+        url: " http://localhost:5000/api/payeCalculator",
         data: payLoad,
       })
-      setIsLoading(false);
-      console.log(res)
-      setTaxResult(res.data);
+      // https://tax-calculator-service.onrender.com
+      res && (res.status === 200) && setTaxResult(res.status);
       
       // add taxyear to global state update object
       const temp = Object.assign({},res.data,{year:taxYear})
@@ -58,15 +58,15 @@ export const TaxCalculator = ({onClick}) => {
       setTaxError(error)
     }
 
-    
+    setIsLoading(false);
   };
 
 //submit formdata to server
   const formSubmit = (e) =>{
-    grossSalary && onClick(e)
+    taxResult !== 0 && onClick(e)
     e.preventDefault();
     grossSalary && postTax() ;
-
+   
   };
 
   

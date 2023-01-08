@@ -1,6 +1,6 @@
 .taxResult {
     display: grid;
-    gap: 20px;
+    gap: 10px;
     margin-inline: 3em;
 
     .tab {
@@ -12,7 +12,7 @@
     .deductionRight,
     .payeRight {
         display: flex;
-        gap: 20px;
+        gap: 10px;
         justify-content: space-between;
     }
 
