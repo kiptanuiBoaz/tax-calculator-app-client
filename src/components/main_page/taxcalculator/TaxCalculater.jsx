@@ -37,11 +37,11 @@ export const TaxCalculator = ({onClick}) => {
 
       const res = await axios({
         method: "post",
-        url: " http://localhost:5000/api/payeCalculator",
+        url: "https://tax-calculator-service.onrender.com/api/payeCalculator",
         data: payLoad,
       })
       // https://tax-calculator-service.onrender.com
-      res && (res.status === 200) && setTaxResult(res.status);
+       setTaxResult(res);
       
       // add taxyear to global state update object
       const temp = Object.assign({},res.data,{year:taxYear})
@@ -68,7 +68,7 @@ export const TaxCalculator = ({onClick}) => {
     grossSalary && postTax() ;
    
   };
-
+console.log(taxResult)
   
   return (
     <>
