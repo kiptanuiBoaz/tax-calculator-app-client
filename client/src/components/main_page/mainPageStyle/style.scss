@@ -1,0 +1,32 @@
+body{
+    height: 100vh;
+
+    .mainSection {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            border-radius: 5px;
+            border: 1px solid #1CB484;
+            max-width: max-content;
+            gap: 20px;
+            padding-bottom: 4rem;
+    
+            .mainContent {
+                display: flex;
+                justify-content: space-between;
+    
+    
+                .selectBtn {
+                    width: 100%;
+                    padding: 8px;
+                    border: none;
+                    font-size: 24px;
+                    font-weight: 500;
+                    border-bottom: 1px solid#1CB484;
+                    background-color: white;
+    
+                }
+            }
+        }
+}

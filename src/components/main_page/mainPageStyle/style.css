@@ -1,4 +1,7 @@
-.mainSection {
+body {
+  height: 100vh;
+}
+body .mainSection {
   display: grid;
   justify-content: center;
   align-items: center;
@@ -19,11 +22,11 @@
     padding-top: 10px;
   }
 }
-.mainSection .mainContent {
+body .mainSection .mainContent {
   display: flex;
   justify-content: space-between;
 }
-.mainSection .mainContent .selectBtn {
+body .mainSection .mainContent .selectBtn {
   width: 100%;
   padding: 8px;
   border: none;

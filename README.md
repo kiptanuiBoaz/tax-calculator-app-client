@@ -1,12 +1,7 @@
-# Tax calculator and  bill manager
+# Natujenge-Group-10-Wk-1-Challange
 
-An app that lets you input your gross salary , insurance contribution and disability benetits, it then computes your  Paye for the payment periond you provided.
-
-# Contrubutors
-
-Elvis Mariga -
-Owen Miano
-Rachel Karanja
-Kiptanui Boaz
-
+<<<<<<< HEAD
 # View the prod version [ here ](https://tax-calculator-doqbrkaww-kiptanuiboaz.vercel.app/)
+=======
+Tax managment and bill managmeny app
+>>>>>>> 2438a288bf3df39d2908e786b593224b1a7984f5
