@@ -21,7 +21,7 @@ export const TaxCalculator = ({onClick}) => {
   const [mortageInterest,setmortageInterest]=useState(0)
   const [insuranceRelief,setinsuranceRelief]=useState(0)
   const [disability,setDisability]=useState(false);
-  const [done, setIsdone] = useState();
+ 
   
 
 
@@ -41,8 +41,8 @@ export const TaxCalculator = ({onClick}) => {
         data: payLoad,
       })
       // https://tax-calculator-service.onrender.com
-  
-    
+       setTaxResult(res);
+      
       // add taxyear to global state update object
       const temp = Object.assign({},res.data,{year:taxYear})
       // console.log(temp);
@@ -59,14 +59,11 @@ export const TaxCalculator = ({onClick}) => {
     }
 
     setIsLoading(false);
-    setIsdone(true)
   };
-
-  done && onClick(taxResult)
 
 //submit formdata to server
   const formSubmit = (e) =>{
-    setTaxResult(e);
+    taxResult !== 0 && onClick(e)
     e.preventDefault();
     grossSalary && postTax() ;
    
